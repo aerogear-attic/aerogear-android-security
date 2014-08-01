@@ -31,22 +31,6 @@
         <version>0.2.4</version>
     </parent>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>aerogear</id>
-            <name>AeroGear Team</name>
-            <email>aerogear-dev@lists.jboss.org</email>
-        </developer>
-    </developers>
-
     <scm>
         <connection>scm:git:git@github.com:aerogear/aerogear-android-security.git</connection>
         <developerConnection>scm:git:git@github.com:aerogear/aerogear-android-security.git</developerConnection>
