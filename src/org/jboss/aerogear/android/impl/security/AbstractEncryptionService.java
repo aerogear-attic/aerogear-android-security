@@ -20,7 +20,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.crypto.CryptoBox;
-import org.jboss.aerogear.crypto.Random;
+import org.jboss.aerogear.crypto.RandomUtils;
 import org.jboss.aerogear.crypto.encoders.Hex;
 
 /**
@@ -29,11 +29,10 @@ import org.jboss.aerogear.crypto.encoders.Hex;
 public abstract class AbstractEncryptionService implements EncryptionService {
 
     private static final String APPLICATION_IV_KEY = "applicationIV";
-    private static final Random RANDOM = new Random();
     private static final String TAG = AbstractEncryptionService.class.getSimpleName();
     private static final int DEFAULT_IV_LENGHT = 1024;
 
-    protected static final byte[] INSTANCE_IV = RANDOM.randomBytes(DEFAULT_IV_LENGHT);
+    protected static final byte[] INSTANCE_IV = RandomUtils.randomBytes(DEFAULT_IV_LENGHT);
     protected final byte[] applicationIV;
 
     public AbstractEncryptionService(Context appContext) {

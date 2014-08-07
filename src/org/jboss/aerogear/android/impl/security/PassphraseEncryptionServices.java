@@ -23,7 +23,7 @@ import org.jboss.aerogear.android.security.CryptoConfig;
 import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.android.security.EncryptionServiceType;
 import org.jboss.aerogear.crypto.CryptoBox;
-import org.jboss.aerogear.crypto.Random;
+import org.jboss.aerogear.crypto.RandomUtils;
 import org.jboss.aerogear.crypto.keys.PrivateKey;
 import org.jboss.aerogear.crypto.password.Pbkdf2;
 
@@ -76,7 +76,7 @@ public class PassphraseEncryptionServices extends AbstractEncryptionService impl
     }
 
     public static class PassPhraseCryptoConfig implements CryptoConfig {
-        private byte[] salt = new Random().randomBytes();
+        private byte[] salt = RandomUtils.randomBytes();
         private String passphrase;
 
         public byte[] getSalt() {
