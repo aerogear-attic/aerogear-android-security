@@ -22,7 +22,7 @@
     <artifactId>aerogear-android-security</artifactId>
     <version>2.0.0-SNAPSHOT</version>
     <packaging>apklib</packaging>
-    <name>AeroGear Android Store Library</name>
+    <name>AeroGear Android Security Library</name>
     <url>http://aerogear.org</url>
 
     <parent>
