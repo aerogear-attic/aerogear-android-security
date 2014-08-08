@@ -30,9 +30,9 @@ public abstract class AbstractEncryptionService implements EncryptionService {
 
     private static final String APPLICATION_IV_KEY = "applicationIV";
     private static final String TAG = AbstractEncryptionService.class.getSimpleName();
-    private static final int DEFAULT_IV_LENGHT = 1024;
+    private static final int DEFAULT_IV_LENGTH = 1024;
 
-    protected static final byte[] INSTANCE_IV = RandomUtils.randomBytes(DEFAULT_IV_LENGHT);
+    protected static final byte[] INSTANCE_IV = RandomUtils.randomBytes(DEFAULT_IV_LENGTH);
     protected final byte[] applicationIV;
 
     public AbstractEncryptionService(Context appContext) {

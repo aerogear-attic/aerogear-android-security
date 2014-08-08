@@ -41,7 +41,7 @@ public class KeyManager {
 
     /**
      * 
-     * This method will create a encryptionService based on the config object.
+     * This method will create a EncryptionService based on the config object.
      * Instances of this service will be accessible using the KeyManager#get(String name).
      * 
      * 
