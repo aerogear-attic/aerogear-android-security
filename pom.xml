@@ -44,7 +44,7 @@
         <aerogear.bom.version>0.2.4</aerogear.bom.version>
         <android.version>4.4.2_r3</android.version>
         <aerogear.android.core.version>2.0.0-SNAPSHOT</aerogear.android.core.version>
-        <aerogear.crypto.version>0.1.5-SNAPSHOT</aerogear.crypto.version>
+        <aerogear.crypto.version>0.1.5</aerogear.crypto.version>
 
         <!-- Test dependencies -->
         <junit.version>4.8.2</junit.version>
