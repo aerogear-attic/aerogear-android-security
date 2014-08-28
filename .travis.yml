@@ -1,0 +1,38 @@
+language: android
+
+notifications:
+  irc: "irc.freenode.org#aerogear"
+
+android:
+  components:
+    - build-tools-19.1.0
+    - android-19
+
+env:
+    matrix:
+      - ANDROID_SDKS=android-19 ANDROID_TARGET=android-19
+
+before_install:
+
+  #################################################
+  ########## maven-android-sdk-deployer ###########
+  #################################################
+
+  # Checkout maven-android-sdk-deployer
+  - git clone git://github.com/mosabua/maven-android-sdk-deployer.git
+
+  # Install android maven repository
+  - cd $PWD/maven-android-sdk-deployer/platforms/$ANDROID_TARGET
+  - mvn  install -N --quiet
+  - cd -
+
+  #################################################
+  ############ Snapshot dependencies ##############
+  #################################################
+
+  # AeroGear Android Core
+  - git clone git://github.com/aerogear/aerogear-android-core.git
+  - cd $PWD/aerogear-android-core
+  - mvn install -N --quiet
+  - cd -
+
