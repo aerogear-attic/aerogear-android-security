@@ -24,6 +24,17 @@ dependencies {
 }
 ```
 
+And in your project's `build.gradle` files you will need to add:
+
+```
+allprojects {
+    repositories {
+    mavenLocal();
+        //All other repositories
+    }
+}
+```
+
 ### Maven
 
 Include the following dependencies in your project's `pom.xml`
