@@ -10,6 +10,10 @@ AeroGear Android Security is an Android API under [AeroGear Crypto Java](https:/
 
 Until the 2.0 modules are stable and in Maven Central, we will need to build the projects first.  Please take a look of the [step by step on our website](http://aerogear.org/docs/guides/aerogear-android/HowToBuildAeroGearAndroidLibrary/)
 
+*The following dependencies are required to build this project:*
+
+* [aerogear-android-core](http://github.com/aerogear/aerogear-android-core) 
+
 ## Usage
 
 There are two supported ways of developing apps using AeroGear for Android. Development may be done with Maven and Android Studio. Maven and Android Studio feature good dependency and library management and are far easier to get set up and developing.
