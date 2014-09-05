@@ -33,6 +33,7 @@
 	
 	<modules>
 		<module>aerogear-android-security</module>
+                <module>aerogear-android-security-test</module>
 	</modules>
 
     <scm>
