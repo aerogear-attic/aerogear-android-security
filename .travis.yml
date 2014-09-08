@@ -12,7 +12,7 @@ android:
 
 env:
     matrix:
-      - ANDROID_SDKS=android-19 ANDROID_TARGET=android-19
+      - ANDROID_SDKS=android-19 ANDROID_TARGET=android-19 MAVEN_OPTS=-Xmx1024m
 
 before_install:
   - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
