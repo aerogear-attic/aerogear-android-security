@@ -45,13 +45,13 @@ public class PasswordEncryptionServices extends AbstractEncryptionService implem
     private final Context appContext;
     private final CryptoBox crypto;
 
-    public PasswordEncryptionServices(PasswordProtectedKeystoreCryptoConfig config, Context appContext) {
-        super(appContext);
-        this.appContext = appContext;
+    public PasswordEncryptionServices(PasswordProtectedKeyStoreCryptoConfiguration config) {
+        super(config.getContext());
+        this.appContext = config.getContext();
         this.crypto = getCrypto(appContext, config);
     }
 
-    private CryptoBox getCrypto(Context appContext, PasswordProtectedKeystoreCryptoConfig config) {
+    private CryptoBox getCrypto(Context appContext, PasswordProtectedKeyStoreCryptoConfiguration config) {
         validate(config);
 
         String keyAlias = config.getAlias();
@@ -59,7 +59,7 @@ public class PasswordEncryptionServices extends AbstractEncryptionService implem
             throw new IllegalArgumentException("Alias in CryptoConfig may not be null");
         }
 
-        char[] password = derive(config.password).toCharArray();
+        char[] password = derive(config.getPassword()).toCharArray();
 
         KeyStoreServices keyStoreServices = new KeyStoreServices(appContext, password);
         byte[] keyEntry = keyStoreServices.getEntry(keyAlias);
@@ -83,17 +83,17 @@ public class PasswordEncryptionServices extends AbstractEncryptionService implem
         return sharedSecret;
     }
 
-    private void validate(PasswordProtectedKeystoreCryptoConfig config) {
+    private void validate(PasswordProtectedKeyStoreCryptoConfiguration config) {
 
-        if (config.alias == null) {
+        if (config.getAlias() == null) {
             throw new IllegalArgumentException("The alias must not be null");
         }
 
-        if (config.password == null) {
+        if (config.getPassword() == null) {
             throw new IllegalArgumentException("The password must not be null");
         }
 
-        if (config.keyStoreFile == null) {
+        if (config.getKeyStoreFile() == null) {
             throw new IllegalArgumentException("The keystoreFile must not be null");
         }
     }
