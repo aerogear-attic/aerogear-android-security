@@ -38,19 +38,19 @@ public class PassphraseEncryptionServices extends AbstractEncryptionService impl
 
     private final CryptoBox crypto;
 
-    public PassphraseEncryptionServices(Context appContext, PassPhraseCryptoConfig config) {
-        super(appContext);
+    public PassphraseEncryptionServices(PassphraseCryptoConfiguration config) {
+        super(config.getContext());
         this.crypto = getCrypto(config);
     }
-
-    private CryptoBox getCrypto(PassPhraseCryptoConfig config) {
+    
+    private CryptoBox getCrypto(PassphraseCryptoConfiguration config) {
         Pbkdf2 pbkdf2 = AeroGearCrypto.pbkdf2();
         byte[] rawPassword;
 
         validate(config);
 
         try {
-            rawPassword = pbkdf2.encrypt(config.passphrase, config.salt);
+            rawPassword = pbkdf2.encrypt(config.getPassphrase(), config.getSalt());
             return new CryptoBox(new PrivateKey(rawPassword));
         } catch (InvalidKeySpecException ex) {
             Log.e(TAG, ex.getMessage(), ex);
@@ -59,13 +59,13 @@ public class PassphraseEncryptionServices extends AbstractEncryptionService impl
 
     }
 
-    private void validate(PassPhraseCryptoConfig config) {
+    private void validate(PassphraseCryptoConfiguration config) {
 
-        if (config.salt == null) {
+        if (config.getSalt() == null) {
             throw new IllegalArgumentException("The salt must not be null");
         }
 
-        if (config.passphrase == null) {
+        if (config.getPassphrase() == null) {
             throw new IllegalArgumentException("The passphrase must not be null");
         }
     }
