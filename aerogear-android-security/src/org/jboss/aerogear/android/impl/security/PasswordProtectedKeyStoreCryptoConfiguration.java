@@ -1,11 +1,12 @@
-/*
- * Copyright 2014 JBoss by Red Hat.
+/**
+ * JBoss, Home of Professional Open Source
+ * Copyright Red Hat, Inc., and individual contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * 	http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,12 +19,12 @@ package org.jboss.aerogear.android.impl.security;
 import org.jboss.aerogear.android.Config;
 import org.jboss.aerogear.android.security.CryptoConfiguration;
 import org.jboss.aerogear.android.security.EncryptionService;
-import org.jboss.aerogear.crypto.RandomUtils;
 
 /**
  * Configures an instance of {@link PasswordEncryptionServices}.
  */
-public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoConfiguration<PasswordProtectedKeyStoreCryptoConfiguration> implements Config<PasswordProtectedKeyStoreCryptoConfiguration> {
+public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoConfiguration<PasswordProtectedKeyStoreCryptoConfiguration> implements
+        Config<PasswordProtectedKeyStoreCryptoConfiguration> {
 
     private String alias;
     private String password;
@@ -31,7 +32,7 @@ public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoCo
 
     /**
      * The alias of the key in the keystore.
-     *
+     * 
      * @return the current alias
      */
     public String getAlias() {
@@ -40,7 +41,7 @@ public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoCo
 
     /**
      * The alias of the key in the keystore.
-     *
+     * 
      * @param alias a new alias
      * @return the current configuration
      */
@@ -61,7 +62,7 @@ public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoCo
     /**
      * The password is a String value protecting the keystore.
      * 
-     * @param password  a new password
+     * @param password a new password
      * @return the current configuration.
      */
     public PasswordProtectedKeyStoreCryptoConfiguration setPassword(String password) {
@@ -70,8 +71,8 @@ public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoCo
     }
 
     /**
-     * The keystore file is the filename of the keystore.  Defaults to `default.kestore`.
-     *
+     * The keystore file is the filename of the keystore. Defaults to `default.kestore`.
+     * 
      * @return the current value
      */
     public String getKeyStoreFile() {
@@ -79,8 +80,8 @@ public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoCo
     }
 
     /**
-     * The keystore file is the filename of the keystore.  Defaults to `default.kestore`.
-     *
+     * The keystore file is the filename of the keystore. Defaults to `default.kestore`.
+     * 
      * @param keyStoreFile a new keystoreFile
      * @return the current configuration
      */

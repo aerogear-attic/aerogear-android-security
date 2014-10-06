@@ -20,7 +20,6 @@ import android.util.Log;
 import org.jboss.aerogear.AeroGearCrypto;
 import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.crypto.CryptoBox;
-import org.jboss.aerogear.crypto.RandomUtils;
 import org.jboss.aerogear.crypto.keys.PrivateKey;
 import org.jboss.aerogear.crypto.password.Pbkdf2;
 
@@ -39,7 +38,7 @@ public class PassphraseEncryptionServices extends AbstractEncryptionService impl
         super(config.getContext());
         this.crypto = getCrypto(config);
     }
-    
+
     private CryptoBox getCrypto(PassphraseCryptoConfiguration config) {
         Pbkdf2 pbkdf2 = AeroGearCrypto.pbkdf2();
         byte[] rawPassword;

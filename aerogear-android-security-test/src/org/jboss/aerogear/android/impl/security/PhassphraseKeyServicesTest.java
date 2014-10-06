@@ -35,7 +35,7 @@ public class PhassphraseKeyServicesTest extends PatchedActivityInstrumentationTe
         config.setPassphrase("testPhrase");
         config.setSalt(SALT);
         config.setContext(getActivity());
-        
+
         PassphraseEncryptionServices service = new PassphraseEncryptionServices(config);
         String message = "This is a test message";
 

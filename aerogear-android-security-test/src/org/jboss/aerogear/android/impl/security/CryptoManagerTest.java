@@ -16,15 +16,12 @@
  */
 package org.jboss.aerogear.android.impl.security;
 
-import android.content.Context;
 import org.jboss.aerogear.android.security.MainActivity;
 import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
 import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.android.security.CryptoManager;
 import org.jboss.aerogear.crypto.RandomUtils;
 
-
-import static org.mockito.Mockito.mock;
 
 public class CryptoManagerTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
 
@@ -37,12 +34,11 @@ public class CryptoManagerTest extends PatchedActivityInstrumentationTestCase<Ma
         config.setPassphrase("testPhrase");
         config.setSalt(RandomUtils.randomBytes(1024));
         config.setContext(getActivity());
-        
+
         EncryptionService service1 = config.asService();
         EncryptionService service2 = CryptoManager.get("testService");
         assertTrue(service1 instanceof PassphraseEncryptionServices);
         assertSame(service1, service2);
-
 
     }
 
@@ -51,13 +47,12 @@ public class CryptoManagerTest extends PatchedActivityInstrumentationTestCase<Ma
         config.setAlias("TestAlias");
         config.setPassword("testPhrase");
         config.setContext(getActivity());
-        
+
         EncryptionService service1 = config.asService();
         EncryptionService service2 = CryptoManager.get("testService");
 
         assertSame(service1, service2);
         assertTrue(service1 instanceof PasswordEncryptionServices);
-        
 
     }
 

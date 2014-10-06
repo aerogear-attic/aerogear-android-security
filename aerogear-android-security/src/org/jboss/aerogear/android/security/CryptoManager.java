@@ -16,7 +16,6 @@
  */
 package org.jboss.aerogear.android.security;
 
-
 import java.util.HashMap;
 import java.util.Map;
 import org.jboss.aerogear.android.ConfigurationProvider;
@@ -46,7 +45,6 @@ public class CryptoManager {
     private CryptoManager() {
     }
 
-    
     /**
      * 
      * This will add a new Configuration that this Manager can build
@@ -97,6 +95,5 @@ public class CryptoManager {
     public static EncryptionService get(String name) {
         return services.get(name);
     }
-
 
 }

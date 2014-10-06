@@ -1,11 +1,12 @@
-/*
- * Copyright 2014 JBoss by Red Hat.
+/**
+ * JBoss, Home of Professional Open Source
+ * Copyright Red Hat, Inc., and individual contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * 	http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,7 +22,7 @@ import java.util.HashSet;
 import org.jboss.aerogear.android.Config;
 
 /**
- *
+ * 
  * @param <CONFIGURATION> The concrete implementation of the CryptoConfiguration
  */
 public abstract class CryptoConfiguration<CONFIGURATION extends CryptoConfiguration<CONFIGURATION>> implements Config<CONFIGURATION> {
@@ -52,20 +53,20 @@ public abstract class CryptoConfiguration<CONFIGURATION extends CryptoConfigurat
     }
 
     /**
-     *
-     * Creates a {@link  EncryptionService} based on the current configuration
+     * 
+     * Creates a {@link EncryptionService} based on the current configuration
      * and notifies all listeners
-     *
-     * @return An {@link  EncryptionService} based on this configuration
+     * 
+     * @return An {@link EncryptionService} based on this configuration
      * @throws IllegalStateException if context is null
-     *
+     * 
      */
     public final EncryptionService asService() {
 
         if (getContext() == null) {
             throw new IllegalStateException("An applicationContext must be provided");
         }
-        
+
         EncryptionService newService = buildService();
         for (OnEncryptionServiceCreatedListener listener : getOnEncryptionServiceCreatedListeners()) {
             listener.onEncryptionServiceCreated(this, newService);
@@ -74,19 +75,18 @@ public abstract class CryptoConfiguration<CONFIGURATION extends CryptoConfigurat
     }
 
     /**
-     *
-     * Validates configuration parameters and returns a
-     * {@link  EncryptionService} instance.
-     *
-     * @return An {@link  EncryptionService} based on this configuration
-     *
+     * 
+     * Validates configuration parameters and returns a {@link EncryptionService} instance.
+     * 
+     * @return An {@link EncryptionService} based on this configuration
+     * 
      */
     protected abstract EncryptionService buildService();
 
     /**
      * OnEncryptionServiceCreatedListeners are a collection of classes to be
      * notified when the configuration of the service is complete.
-     *
+     * 
      * @return the current collection.
      */
     public Collection<OnEncryptionServiceCreatedListener> getOnEncryptionServiceCreatedListeners() {
@@ -96,7 +96,7 @@ public abstract class CryptoConfiguration<CONFIGURATION extends CryptoConfigurat
     /**
      * OnEncryptionServiceCreatedListeners are a collection of classes to be
      * notified when the configuration of the service is complete.
-     *
+     * 
      * @param listener new listener to add to the collection
      * @return this configuration
      */
@@ -108,7 +108,7 @@ public abstract class CryptoConfiguration<CONFIGURATION extends CryptoConfigurat
     /**
      * OnEncryptionServiceCreatedListeners are a collection of classes to be
      * notified when the configuration of the Service is complete.
-     *
+     * 
      * @param listeners new collection to replace the current one
      * @return this configuration
      */

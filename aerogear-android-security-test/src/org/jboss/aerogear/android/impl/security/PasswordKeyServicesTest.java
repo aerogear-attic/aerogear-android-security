@@ -37,7 +37,7 @@ public class PasswordKeyServicesTest extends PatchedActivityInstrumentationTestC
     protected void setUp() throws Exception {
         super.setUp();
 
-        //Generate the keyStore with the correct password.
+        // Generate the keyStore with the correct password.
         PasswordProtectedKeyStoreCryptoConfiguration config = new PasswordProtectedKeyStoreCryptoConfiguration();
         config.setAlias("TestAlias");
         config.setPassword("testPhrase");
@@ -79,6 +79,5 @@ public class PasswordKeyServicesTest extends PatchedActivityInstrumentationTestC
         byte[] decrypted = service2.decrypt(TestVectors.CRYPTOBOX_IV.getBytes(), encrypted);
         assertTrue(Arrays.equals(decrypted, message.getBytes()));
     }
-
 
 }

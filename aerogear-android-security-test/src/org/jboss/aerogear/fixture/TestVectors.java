@@ -21,7 +21,7 @@ public class TestVectors {
     public static final String PASSWORD = "My Bonnie lies over the ocean, my Bonnie lies over the sea";
     public static final String INVALID_PASSWORD = "invalid";
 
-    //TEST VECTORS
+    // TEST VECTORS
     public static final String BOB_SECRET_KEY = "f3a9375ec8746cc6e78e4b02d7e748988e10c74525e5c0a41d63fe5d21f84224";
 
     public static final String CRYPTOBOX_IV = "69696ee955b62b73cd62bda875fc73d68219e0036b7a0b37";

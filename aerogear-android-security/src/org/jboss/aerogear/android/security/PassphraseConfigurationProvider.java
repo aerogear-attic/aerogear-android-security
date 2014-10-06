@@ -1,11 +1,12 @@
-/*
- * Copyright 2014 JBoss by Red Hat.
+/**
+ * JBoss, Home of Professional Open Source
+ * Copyright Red Hat, Inc., and individual contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * 	http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,11 +19,11 @@ package org.jboss.aerogear.android.security;
 import org.jboss.aerogear.android.ConfigurationProvider;
 import org.jboss.aerogear.android.impl.security.PassphraseCryptoConfiguration;
 
-public class PassphraseConfigurationProvider  implements ConfigurationProvider<PassphraseCryptoConfiguration> {
+public class PassphraseConfigurationProvider implements ConfigurationProvider<PassphraseCryptoConfiguration> {
 
     @Override
     public PassphraseCryptoConfiguration newConfiguration() {
         return new PassphraseCryptoConfiguration();
     }
-    
+
 }
