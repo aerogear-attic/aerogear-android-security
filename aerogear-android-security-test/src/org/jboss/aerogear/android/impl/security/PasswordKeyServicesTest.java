@@ -38,21 +38,23 @@ public class PasswordKeyServicesTest extends PatchedActivityInstrumentationTestC
         super.setUp();
 
         //Generate the keyStore with the correct password.
-        PasswordEncryptionServices.PasswordProtectedKeystoreCryptoConfig config = new PasswordEncryptionServices.PasswordProtectedKeystoreCryptoConfig();
+        PasswordProtectedKeyStoreCryptoConfiguration config = new PasswordProtectedKeyStoreCryptoConfiguration();
         config.setAlias("TestAlias");
         config.setPassword("testPhrase");
+        config.setContext(getActivity());
 
-        PasswordEncryptionServices service = new PasswordEncryptionServices(config, getActivity());
+        PasswordEncryptionServices service = new PasswordEncryptionServices(config);
 
     }
 
     public void testPasswordKeyServicesEncrypt() {
         String message = "This is a test message";
-        PasswordEncryptionServices.PasswordProtectedKeystoreCryptoConfig config = new PasswordEncryptionServices.PasswordProtectedKeystoreCryptoConfig();
+        PasswordProtectedKeyStoreCryptoConfiguration config = new PasswordProtectedKeyStoreCryptoConfiguration();
         config.setAlias("TestAlias");
         config.setPassword("testPhrase");
+        config.setContext(getActivity());
 
-        PasswordEncryptionServices service = new PasswordEncryptionServices(config, getActivity());
+        PasswordEncryptionServices service = new PasswordEncryptionServices(config);
         byte[] encrypted = service.encrypt(TestVectors.CRYPTOBOX_IV.getBytes(), message.getBytes());
 
         assertFalse(Arrays.equals(encrypted, message.getBytes()));
@@ -62,12 +64,13 @@ public class PasswordKeyServicesTest extends PatchedActivityInstrumentationTestC
     }
 
     public void testPasswordKeyServicesEncryptShareKey() {
-        PasswordEncryptionServices.PasswordProtectedKeystoreCryptoConfig config = new PasswordEncryptionServices.PasswordProtectedKeystoreCryptoConfig();
+        PasswordProtectedKeyStoreCryptoConfiguration config = new PasswordProtectedKeyStoreCryptoConfiguration();
         config.setAlias("TestAlias");
         config.setPassword("testPhrase");
+        config.setContext(getActivity());
 
-        PasswordEncryptionServices service = new PasswordEncryptionServices(config, getActivity());
-        PasswordEncryptionServices service2 = new PasswordEncryptionServices(config, getActivity());
+        PasswordEncryptionServices service = new PasswordEncryptionServices(config);
+        PasswordEncryptionServices service2 = new PasswordEncryptionServices(config);
         String message = "This is a test message";
 
         byte[] encrypted = service.encrypt(TestVectors.CRYPTOBOX_IV.getBytes(), message.getBytes());
@@ -77,17 +80,5 @@ public class PasswordKeyServicesTest extends PatchedActivityInstrumentationTestC
         assertTrue(Arrays.equals(decrypted, message.getBytes()));
     }
 
-    //FIXME: Intentionally ignored
-    public void ignorePassPhraseConfiguration() {
-        PasswordEncryptionServices.PasswordProtectedKeystoreCryptoConfig config = new PasswordEncryptionServices.PasswordProtectedKeystoreCryptoConfig();
-        config.setAlias("TestAlias");
-        config.setPassword("passphrase");
-
-        try {
-            new PasswordEncryptionServices(config, getActivity());
-        } catch (Exception e) {
-            fail();
-        }
-    }
 
 }
