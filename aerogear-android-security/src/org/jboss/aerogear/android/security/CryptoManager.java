@@ -16,12 +16,9 @@
  */
 package org.jboss.aerogear.android.security;
 
-import android.content.Context;
-import org.jboss.aerogear.android.impl.security.DefaultEncryptionServiceFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.net.ssl.KeyManager;
 import org.jboss.aerogear.android.ConfigurationProvider;
 import org.jboss.aerogear.android.impl.security.PassphraseCryptoConfiguration;
 import org.jboss.aerogear.android.impl.security.PasswordProtectedKeyStoreCryptoConfiguration;
@@ -70,16 +67,16 @@ public class CryptoManager {
      * @param <CFG> the Configuration type.
      * @param name an identifier which will be used to fetch the AuthenticationModule after
      *            configuration is finished.
-     * @param authenticationConfigurationClass the class of the configuration type.
+     * @param cryptoConfigurationClass the class of the configuration type.
      * 
      * @return a AuthenticationConfiguration which can be used to build a AuthenticationModule object.
      */
-    public static <CFG extends CryptoConfiguration<CFG>> CFG config(String name, Class<CFG> authenticationConfigurationClass) {
+    public static <CFG extends CryptoConfiguration<CFG>> CFG config(String name, Class<CFG> cryptoConfigurationClass) {
 
         @SuppressWarnings("unchecked")
         ConfigurationProvider<? extends CryptoConfiguration<CFG>> provider =
                 (ConfigurationProvider<? extends CryptoConfiguration<CFG>>)
-                configurationProviderMap.get(authenticationConfigurationClass);
+                configurationProviderMap.get(cryptoConfigurationClass);
 
         if (provider == null) {
             throw new IllegalArgumentException("Configuration not registered!");
@@ -94,7 +91,7 @@ public class CryptoManager {
     /**
      * Fetches an instance of encryption service.
      * 
-     * @param name the name provided to {@link KeyManager#encryptionService(String, org.jboss.aerogear.android.security.CryptoConfig, android.content.Context)  }
+     * @param name the name provided to {@link CryptoManager#config(java.lang.String, java.lang.Class)  }
      * @return a cached encryption service or null.
      */
     public static EncryptionService get(String name) {

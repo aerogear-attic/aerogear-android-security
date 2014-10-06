@@ -19,9 +19,7 @@ package org.jboss.aerogear.android.impl.security;
 import android.content.Context;
 import android.content.SharedPreferences;
 import org.jboss.aerogear.AeroGearCrypto;
-import org.jboss.aerogear.android.security.CryptoConfig;
 import org.jboss.aerogear.android.security.EncryptionService;
-import org.jboss.aerogear.android.security.EncryptionServiceType;
 import org.jboss.aerogear.crypto.CryptoBox;
 import org.jboss.aerogear.crypto.RandomUtils;
 import org.jboss.aerogear.crypto.encoders.Encoder;
@@ -127,34 +125,6 @@ public class PasswordEncryptionServices extends AbstractEncryptionService implem
     @Override
     protected CryptoBox getCryptoInstance() {
         return crypto;
-    }
-
-    public static class PasswordProtectedKeystoreCryptoConfig implements CryptoConfig {
-        private String alias;
-        private String password;
-        private String keyStoreFile = "default.keystore";
-
-        public String getAlias() {
-            return alias;
-        }
-
-        public void setAlias(String alias) {
-            this.alias = alias;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        @Override
-        public EncryptionServiceType getType() {
-            return EncryptionServiceTypes.PASSWORD_KEYSTORE;
-        }
-
     }
 
 }

@@ -16,12 +16,9 @@
  */
 package org.jboss.aerogear.android.impl.security;
 
-import android.content.Context;
 import android.util.Log;
 import org.jboss.aerogear.AeroGearCrypto;
-import org.jboss.aerogear.android.security.CryptoConfig;
 import org.jboss.aerogear.android.security.EncryptionService;
-import org.jboss.aerogear.android.security.EncryptionServiceType;
 import org.jboss.aerogear.crypto.CryptoBox;
 import org.jboss.aerogear.crypto.RandomUtils;
 import org.jboss.aerogear.crypto.keys.PrivateKey;
@@ -73,33 +70,6 @@ public class PassphraseEncryptionServices extends AbstractEncryptionService impl
     @Override
     protected CryptoBox getCryptoInstance() {
         return crypto;
-    }
-
-    public static class PassPhraseCryptoConfig implements CryptoConfig {
-        private byte[] salt = RandomUtils.randomBytes();
-        private String passphrase;
-
-        public byte[] getSalt() {
-            return salt;
-        }
-
-        public void setSalt(byte[] salt) {
-            this.salt = salt;
-        }
-
-        public String getPassphrase() {
-            return passphrase;
-        }
-
-        public void setPassphrase(String passphrase) {
-            this.passphrase = passphrase;
-        }
-
-        @Override
-        public EncryptionServiceType getType() {
-            return EncryptionServiceTypes.PASSPHRASE;
-        }
-
     }
 
 }
