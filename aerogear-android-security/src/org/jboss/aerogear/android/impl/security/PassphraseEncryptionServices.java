@@ -16,14 +16,10 @@
  */
 package org.jboss.aerogear.android.impl.security;
 
-import android.content.Context;
 import android.util.Log;
 import org.jboss.aerogear.AeroGearCrypto;
-import org.jboss.aerogear.android.security.CryptoConfig;
 import org.jboss.aerogear.android.security.EncryptionService;
-import org.jboss.aerogear.android.security.EncryptionServiceType;
 import org.jboss.aerogear.crypto.CryptoBox;
-import org.jboss.aerogear.crypto.RandomUtils;
 import org.jboss.aerogear.crypto.keys.PrivateKey;
 import org.jboss.aerogear.crypto.password.Pbkdf2;
 
@@ -38,19 +34,19 @@ public class PassphraseEncryptionServices extends AbstractEncryptionService impl
 
     private final CryptoBox crypto;
 
-    public PassphraseEncryptionServices(Context appContext, PassPhraseCryptoConfig config) {
-        super(appContext);
+    public PassphraseEncryptionServices(PassphraseCryptoConfiguration config) {
+        super(config.getContext());
         this.crypto = getCrypto(config);
     }
 
-    private CryptoBox getCrypto(PassPhraseCryptoConfig config) {
+    private CryptoBox getCrypto(PassphraseCryptoConfiguration config) {
         Pbkdf2 pbkdf2 = AeroGearCrypto.pbkdf2();
         byte[] rawPassword;
 
         validate(config);
 
         try {
-            rawPassword = pbkdf2.encrypt(config.passphrase, config.salt);
+            rawPassword = pbkdf2.encrypt(config.getPassphrase(), config.getSalt());
             return new CryptoBox(new PrivateKey(rawPassword));
         } catch (InvalidKeySpecException ex) {
             Log.e(TAG, ex.getMessage(), ex);
@@ -59,13 +55,13 @@ public class PassphraseEncryptionServices extends AbstractEncryptionService impl
 
     }
 
-    private void validate(PassPhraseCryptoConfig config) {
+    private void validate(PassphraseCryptoConfiguration config) {
 
-        if (config.salt == null) {
+        if (config.getSalt() == null) {
             throw new IllegalArgumentException("The salt must not be null");
         }
 
-        if (config.passphrase == null) {
+        if (config.getPassphrase() == null) {
             throw new IllegalArgumentException("The passphrase must not be null");
         }
     }
@@ -73,33 +69,6 @@ public class PassphraseEncryptionServices extends AbstractEncryptionService impl
     @Override
     protected CryptoBox getCryptoInstance() {
         return crypto;
-    }
-
-    public static class PassPhraseCryptoConfig implements CryptoConfig {
-        private byte[] salt = RandomUtils.randomBytes();
-        private String passphrase;
-
-        public byte[] getSalt() {
-            return salt;
-        }
-
-        public void setSalt(byte[] salt) {
-            this.salt = salt;
-        }
-
-        public String getPassphrase() {
-            return passphrase;
-        }
-
-        public void setPassphrase(String passphrase) {
-            this.passphrase = passphrase;
-        }
-
-        @Override
-        public EncryptionServiceType getType() {
-            return EncryptionServiceTypes.PASSPHRASE;
-        }
-
     }
 
 }

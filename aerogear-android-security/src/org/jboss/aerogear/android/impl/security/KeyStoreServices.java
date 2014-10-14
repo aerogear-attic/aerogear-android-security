@@ -38,7 +38,6 @@ public class KeyStoreServices {
     private KeyStore.PasswordProtection passwordProtectionParameter;
     private KeyStore store;
 
-
     public KeyStoreServices(Context context, char[] password) {
         try {
             passwordProtectionParameter = new KeyStore.PasswordProtection(password);
@@ -83,7 +82,7 @@ public class KeyStoreServices {
         return key != null ? key.getEncoded() : null;
     }
 
-    public void addEntry(String keyAlias, byte[] keyBytes){
+    public void addEntry(String keyAlias, byte[] keyBytes) {
         KeyStore.SecretKeyEntry secretEntry = new KeyStore.SecretKeyEntry(new SecretKeySpec(keyBytes, "ECDH"));
         try {
             store.setEntry(keyAlias, secretEntry, passwordProtectionParameter);
@@ -92,7 +91,7 @@ public class KeyStoreServices {
         }
     }
 
-    public void save(){
+    public void save() {
         try {
             store.store(createKeystoreStream(), password);
         } catch (KeyStoreException ex) {
@@ -118,7 +117,7 @@ public class KeyStoreServices {
             try {
                 return new FileInputStream(keystore);
             } catch (FileNotFoundException ex) {
-                //This shouldn't happen because we do an explicit check earlier...
+                // This shouldn't happen because we do an explicit check earlier...
                 Log.e(TAG, ex.getMessage());
                 throw new RuntimeException(ex);
             }

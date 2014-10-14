@@ -16,12 +16,14 @@
  */
 package org.jboss.aerogear.android.security;
 
-import org.jboss.aerogear.android.TypeDescriptor;
+import org.jboss.aerogear.android.ConfigurationProvider;
+import org.jboss.aerogear.android.impl.security.PassphraseCryptoConfiguration;
 
-/**
- * Implementations of this interface provide identifying information to 
- * KeyManager and KeyServiceFactory.
- */
-public interface EncryptionServiceType extends TypeDescriptor {
+public class PassphraseConfigurationProvider implements ConfigurationProvider<PassphraseCryptoConfiguration> {
+
+    @Override
+    public PassphraseCryptoConfiguration newConfiguration() {
+        return new PassphraseCryptoConfiguration();
+    }
 
 }

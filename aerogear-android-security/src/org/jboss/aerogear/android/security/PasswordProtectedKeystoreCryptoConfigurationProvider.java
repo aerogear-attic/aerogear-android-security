@@ -16,23 +16,18 @@
  */
 package org.jboss.aerogear.android.security;
 
-import android.content.Context;
+import org.jboss.aerogear.android.ConfigurationProvider;
+import org.jboss.aerogear.android.impl.security.PasswordProtectedKeyStoreCryptoConfiguration;
 
 /**
- * Classes which implement this interface are responsible for creating 
- * Encryption services from a config object.
+ * 
+ * @author summers
  */
-public interface EncryptionServiceFactory {
+class PasswordProtectedKeystoreCryptoConfigurationProvider implements ConfigurationProvider<PasswordProtectedKeyStoreCryptoConfiguration> {
 
-    /**
-     * 
-     * This method provides a EncryptionService.  Services MAY be cached and 
-     * reused or they may be new objects every time.
-     * 
-     * @param config config objects may provide any parameters they wish.
-     * @param context the Android Application Context
-     * @return A valid Encryption Service
-     */
-    public EncryptionService getService(CryptoConfig config, Context context);
+    @Override
+    public PasswordProtectedKeyStoreCryptoConfiguration newConfiguration() {
+        return new PasswordProtectedKeyStoreCryptoConfiguration();
+    }
 
 }

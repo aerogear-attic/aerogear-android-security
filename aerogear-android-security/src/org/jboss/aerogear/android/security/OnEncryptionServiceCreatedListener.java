@@ -16,14 +16,16 @@
  */
 package org.jboss.aerogear.android.security;
 
-/**
- * This is a marker interface used by the KeyManagement factory class.
- */
-public interface CryptoConfig {
+public interface OnEncryptionServiceCreatedListener {
 
     /**
      * 
-     * @return the type of this CryptoConfig.
+     * A method called when {@link EncryptionService}s are created. Typically this will
+     * be done from {@link CryptoConfiguration#asService()   }
+     * 
+     * @param configuration the configuration of the new Service
+     * @param service the new EncryptionService
      */
-    public EncryptionServiceType getType();
+    abstract void onEncryptionServiceCreated(CryptoConfiguration<?> configuration, EncryptionService service);
+
 }

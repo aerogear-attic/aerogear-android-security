@@ -17,7 +17,7 @@
 package org.jboss.aerogear.android.security;
 
 /**
- * Classes which implement this interface are responsible for providing encryption 
+ * Classes which implement this interface are responsible for providing encryption
  * services to AeroGear.
  */
 public interface EncryptionService {
@@ -35,7 +35,7 @@ public interface EncryptionService {
      * 
      * Encrypt the message with a iv
      * 
-     * @param message  the message to encrypt
+     * @param message the message to encrypt
      * @param iv The IV to encrypted the message with
      * @return an encrypted version of the method
      */
@@ -56,7 +56,7 @@ public interface EncryptionService {
      * 
      * @param message the message to decrypt
      * @param iv The IV to encrypted the message with
-     * @return  the message decrypted
+     * @return the message decrypted
      */
     public byte[] decrypt(byte[] iv, byte[] message);
 

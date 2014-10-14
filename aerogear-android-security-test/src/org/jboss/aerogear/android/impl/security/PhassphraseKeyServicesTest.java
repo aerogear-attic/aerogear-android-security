@@ -31,11 +31,12 @@ public class PhassphraseKeyServicesTest extends PatchedActivityInstrumentationTe
     }
 
     public void testPassphraseKeyServicesEncrypt() {
-        PassphraseEncryptionServices.PassPhraseCryptoConfig config = new PassphraseEncryptionServices.PassPhraseCryptoConfig();
+        PassphraseCryptoConfiguration config = new PassphraseCryptoConfiguration();
         config.setPassphrase("testPhrase");
         config.setSalt(SALT);
+        config.setContext(getActivity());
 
-        PassphraseEncryptionServices service = new PassphraseEncryptionServices(getActivity(), config);
+        PassphraseEncryptionServices service = new PassphraseEncryptionServices(config);
         String message = "This is a test message";
 
         byte[] encrypted = service.encrypt(message.getBytes());
