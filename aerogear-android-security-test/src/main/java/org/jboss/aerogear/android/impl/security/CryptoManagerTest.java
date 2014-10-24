@@ -16,7 +16,7 @@
  */
 package org.jboss.aerogear.android.impl.security;
 
-import org.jboss.aerogear.android.security.MainActivity;
+import org.jboss.aerogear.android.security.test.MainActivity;
 import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
 import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.android.security.CryptoManager;

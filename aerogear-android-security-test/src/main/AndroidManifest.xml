@@ -16,7 +16,7 @@
   limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.jboss.aerogear.android.security"
+    package="org.jboss.aerogear.android.security.test"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -25,7 +25,7 @@
     
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
-        android:targetPackage="org.jboss.aerogear.android.security" />
+        android:targetPackage="org.jboss.aerogear.android.security.test" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -33,7 +33,7 @@
         <uses-library android:name="android.test.runner" />
 
         <activity
-            android:name="org.jboss.aerogear.android.security.MainActivity"
+            android:name="org.jboss.aerogear.android.security.test.MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
