@@ -23,7 +23,7 @@
 package org.jboss.aerogear.android.impl.security;
 
 import java.util.Arrays;
-import org.jboss.aerogear.android.security.MainActivity;
+import org.jboss.aerogear.android.security.test.MainActivity;
 import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
 import org.jboss.aerogear.fixture.TestVectors;
 

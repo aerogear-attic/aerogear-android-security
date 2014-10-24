@@ -19,7 +19,7 @@ package org.jboss.aerogear.android.impl.security;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import static junit.framework.Assert.assertTrue;
-import org.jboss.aerogear.android.security.MainActivity;
+import org.jboss.aerogear.android.security.test.MainActivity;
 import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
 
 public class PhassphraseKeyServicesTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
