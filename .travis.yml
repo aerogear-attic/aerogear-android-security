@@ -10,19 +10,21 @@ jdk:
 
 android:
   components:
-    - build-tools-19.1.0
-    - android-19
-    - sys-img-armeabi-v7a-android-19
+    - platform-tools
+    - tools
+    - build-tools-21.1.1
+    - android-21
+    - sys-img-armeabi-v7a-android-21
 
 env:
     matrix:
-      - ANDROID_SDKS=android-19 ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
+      - ANDROID_SDK=android-21 ANDROID_EMULATOR=android-21 ANDROID_ABI=armeabi-v7a
 
 before_install:
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+
+  # Kill unnecessary services
+  - sudo service mysql stop
+  - sudo service postgresql stop
 
   #################################################
   ########## maven-android-sdk-deployer ###########
@@ -32,7 +34,7 @@ before_install:
   - git clone git://github.com/mosabua/maven-android-sdk-deployer.git
 
   # Install android maven repository
-  - cd $PWD/maven-android-sdk-deployer/platforms/$ANDROID_TARGET
+  - cd $PWD/maven-android-sdk-deployer/platforms/$ANDROID_SDK
   - mvn  install -N --quiet
   - cd -
 
@@ -45,4 +47,13 @@ before_install:
   - cd $PWD/aerogear-android-core
   - mvn install -N --quiet
   - cd -
+
+before_script:
+
+  # Emulator Management: Create, Start and Wait
+  - echo no | android create avd --force -n test -t $ANDROID_EMULATOR --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - wget https://raw.githubusercontent.com/travis-ci/travis-cookbooks/master/ci_environment/android-sdk/files/default/android-wait-for-emulator
+  - chmod a+x ./android-wait-for-emulator
+  - ./android-wait-for-emulator
 
