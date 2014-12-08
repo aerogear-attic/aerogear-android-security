@@ -14,11 +14,12 @@ android:
     - tools
     - build-tools-21.1.1
     - android-21
-    - sys-img-armeabi-v7a-android-21
+    - android-19
+    - sys-img-armeabi-v7a-android-19
 
 env:
     matrix:
-      - ANDROID_SDK=android-21 ANDROID_EMULATOR=android-21 ANDROID_ABI=armeabi-v7a
+      - ANDROID_SDK=android-21 ANDROID_EMULATOR=android-19 ANDROID_ABI=armeabi-v7a
 
 before_install:
 
@@ -50,9 +51,19 @@ before_install:
 
 before_script:
 
-  # Emulator Management: Create, Start and Wait
+  # Create emulator
   - echo no | android create avd --force -n test -t $ANDROID_EMULATOR --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
+
+script:
+  - mvn install -Drelease
+  - cd aerogear-android-security-test
+  - mvn package -DskipTests=true;
+
+  - emulator -avd test -no-skin -no-audio -no-window&
   - wget https://raw.githubusercontent.com/travis-ci/travis-cookbooks/master/ci_environment/android-sdk/files/default/android-wait-for-emulator
   - chmod a+x ./android-wait-for-emulator
   - ./android-wait-for-emulator
+  - adb shell input keyevent 82
+  - adb shell df
+  - adb install target/aerogear-android-security-test-2.0.0-SNAPSHOT.apk
+  - mvn -X android:instrument
