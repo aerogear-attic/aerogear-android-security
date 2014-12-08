@@ -55,6 +55,4 @@ before_script:
   - ./android-wait-for-emulator
 
 script:
-  - mvn install -Prelease;
-  - cd aerogear-android-security-test;
   - mvn install -Dandroid.device=test
