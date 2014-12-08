@@ -9,13 +9,13 @@ android:
   components:
     - platform-tools
     - tools
-    - build-tools-21.1.1
+    - build-tools-23.0.5
     - android-21
     - sys-img-armeabi-v7a-android-21
 
 env:
     matrix:
-      - ANDROID_SDK=android-21 ANDROID_EMULATOR=android-21 ANDROID_ABI=armeabi-v7a MAVEN_OPTS=-Xmx1024m
+      - ANDROID_SDK=android-21 ANDROID_EMULATOR=android-21 ANDROID_ABI=armeabi-v7a
 
 before_install:
 
@@ -53,6 +53,3 @@ before_script:
   - wget https://raw.githubusercontent.com/travis-ci/travis-cookbooks/master/ci_environment/android-sdk/files/default/android-wait-for-emulator
   - chmod a+x ./android-wait-for-emulator
   - ./android-wait-for-emulator
-
-script:
-  - mvn install -Dandroid.device=test
