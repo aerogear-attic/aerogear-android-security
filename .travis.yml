@@ -1,8 +1,5 @@
 language: android
 
-notifications:
-  irc: "irc.freenode.org#aerogear"
-
 jdk:
   - oraclejdk8
   - oraclejdk7
@@ -57,3 +54,7 @@ before_script:
   - chmod a+x ./android-wait-for-emulator
   - ./android-wait-for-emulator
 
+script:
+  - mvn install -Prelease;
+  - cd aerogear-android-security-test;
+  - mvn install -Dandroid.device=test
