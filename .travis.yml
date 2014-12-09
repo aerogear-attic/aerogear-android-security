@@ -66,4 +66,4 @@ script:
   - adb shell input keyevent 82
   - adb shell df
   - adb install target/aerogear-android-security-test-2.0.0-SNAPSHOT.apk
-  - mvn -X android:instrument
+  - mvn android:instrument
