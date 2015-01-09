@@ -18,31 +18,33 @@ package org.jboss.aerogear.android.security;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.jboss.aerogear.android.ConfigurationProvider;
-import org.jboss.aerogear.android.impl.security.PassphraseCryptoConfiguration;
-import org.jboss.aerogear.android.impl.security.PasswordProtectedKeyStoreCryptoConfiguration;
+import org.jboss.aerogear.android.core.ConfigurationProvider;
+import org.jboss.aerogear.android.security.passphrase.PassphraseGeneratedEncryptionConfigurationProvider;
+import org.jboss.aerogear.android.security.passphrase.PassphraseGeneratedEncryptionConfiguration;
+import org.jboss.aerogear.android.security.keystore.KeyStoreBasedEncryptionConfiguration;
+import org.jboss.aerogear.android.security.keystore.KeyStoreBasedEncryptionConfigurationProvider;
 
-public class CryptoManager {
+public class SecurityManager {
 
     private static Map<String, EncryptionService> services = new HashMap<String, EncryptionService>();
 
-    private static Map<Class<? extends CryptoConfiguration<?>>, ConfigurationProvider<?>> configurationProviderMap = new HashMap<Class<? extends CryptoConfiguration<?>>, ConfigurationProvider<?>>();
+    private static Map<Class<? extends AbstractEncryptionConfiguration<?>>, ConfigurationProvider<?>> configurationProviderMap = new HashMap<Class<? extends AbstractEncryptionConfiguration<?>>, ConfigurationProvider<?>>();
 
     private static OnEncryptionServiceCreatedListener onEncryptionServiceCreatedListener = new OnEncryptionServiceCreatedListener() {
         @Override
-        public void onEncryptionServiceCreated(CryptoConfiguration<?> configuration, EncryptionService service) {
+        public void onEncryptionServiceCreated(AbstractEncryptionConfiguration<?> configuration, EncryptionService service) {
             services.put(configuration.getName(), service);
         }
     };
 
     static {
-        PassphraseConfigurationProvider passphraseCryptoConfigProvider = new PassphraseConfigurationProvider();
-        CryptoManager.registerConfigurationProvider(PassphraseCryptoConfiguration.class, passphraseCryptoConfigProvider);
-        PasswordProtectedKeystoreCryptoConfigurationProvider digestConfigurationProvider = new PasswordProtectedKeystoreCryptoConfigurationProvider();
-        CryptoManager.registerConfigurationProvider(PasswordProtectedKeyStoreCryptoConfiguration.class, digestConfigurationProvider);
+        PassphraseGeneratedEncryptionConfigurationProvider passphraseCryptoConfigProvider = new PassphraseGeneratedEncryptionConfigurationProvider();
+        SecurityManager.registerConfigurationProvider(PassphraseGeneratedEncryptionConfiguration.class, passphraseCryptoConfigProvider);
+        KeyStoreBasedEncryptionConfigurationProvider digestConfigurationProvider = new KeyStoreBasedEncryptionConfigurationProvider();
+        SecurityManager.registerConfigurationProvider(KeyStoreBasedEncryptionConfiguration.class, digestConfigurationProvider);
     }
 
-    private CryptoManager() {
+    private SecurityManager() {
     }
 
     /**
@@ -54,7 +56,7 @@ public class CryptoManager {
      * @param configurationClass the class of configuration to be registered
      * @param provider the instance which will provide the configuration.
      */
-    public static <CFG extends CryptoConfiguration<CFG>> void registerConfigurationProvider
+    public static <CFG extends AbstractEncryptionConfiguration<CFG>> void registerConfigurationProvider
             (Class<CFG> configurationClass, ConfigurationProvider<CFG> provider) {
         configurationProviderMap.put(configurationClass, provider);
     }
@@ -69,11 +71,11 @@ public class CryptoManager {
      * 
      * @return a AuthenticationConfiguration which can be used to build a AuthenticationModule object.
      */
-    public static <CFG extends CryptoConfiguration<CFG>> CFG config(String name, Class<CFG> cryptoConfigurationClass) {
+    public static <CFG extends AbstractEncryptionConfiguration<CFG>> CFG config(String name, Class<CFG> cryptoConfigurationClass) {
 
         @SuppressWarnings("unchecked")
-        ConfigurationProvider<? extends CryptoConfiguration<CFG>> provider =
-                (ConfigurationProvider<? extends CryptoConfiguration<CFG>>)
+        ConfigurationProvider<? extends AbstractEncryptionConfiguration<CFG>> provider =
+                (ConfigurationProvider<? extends AbstractEncryptionConfiguration<CFG>>)
                 configurationProviderMap.get(cryptoConfigurationClass);
 
         if (provider == null) {
@@ -89,7 +91,7 @@ public class CryptoManager {
     /**
      * Fetches an instance of encryption service.
      * 
-     * @param name the name provided to {@link CryptoManager#config(java.lang.String, java.lang.Class)  }
+     * @param name the name provided to {@link SecurityManager#config(java.lang.String, java.lang.Class)  }
      * @return a cached encryption service or null.
      */
     public static EncryptionService get(String name) {

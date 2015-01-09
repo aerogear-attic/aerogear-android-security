@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.security;
+package org.jboss.aerogear.android.security.util;
 
 import android.content.Context;
 import android.util.Log;
@@ -28,9 +28,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableEntryException;
 import java.security.cert.CertificateException;
 
-public class KeyStoreServices {
+public class KeyStoreUtils {
 
-    private static final String TAG = KeyStoreServices.class.getSimpleName();
+    private static final String TAG = KeyStoreUtils.class.getSimpleName();
     private static final String DEFAULT_KEYSTORE = "default.keystore";
     private char[] password;
     private Context context;
@@ -38,7 +38,7 @@ public class KeyStoreServices {
     private KeyStore.PasswordProtection passwordProtectionParameter;
     private KeyStore store;
 
-    public KeyStoreServices(Context context, char[] password) {
+    public KeyStoreUtils(Context context, char[] password) {
         try {
             passwordProtectionParameter = new KeyStore.PasswordProtection(password);
             this.store = KeyStore.getInstance("BKS");

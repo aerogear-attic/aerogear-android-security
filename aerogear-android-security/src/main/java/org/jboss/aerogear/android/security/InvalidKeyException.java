@@ -16,18 +16,8 @@
  */
 package org.jboss.aerogear.android.security;
 
-import org.jboss.aerogear.android.ConfigurationProvider;
-import org.jboss.aerogear.android.impl.security.PasswordProtectedKeyStoreCryptoConfiguration;
-
-/**
- * 
- * @author summers
- */
-class PasswordProtectedKeystoreCryptoConfigurationProvider implements ConfigurationProvider<PasswordProtectedKeyStoreCryptoConfiguration> {
-
-    @Override
-    public PasswordProtectedKeyStoreCryptoConfiguration newConfiguration() {
-        return new PasswordProtectedKeyStoreCryptoConfiguration();
+public class InvalidKeyException extends RuntimeException {
+    public InvalidKeyException(RuntimeException e) {
+        super(e);
     }
-
 }

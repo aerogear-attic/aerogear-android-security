@@ -19,13 +19,13 @@ package org.jboss.aerogear.android.security;
 import android.content.Context;
 import java.util.Collection;
 import java.util.HashSet;
-import org.jboss.aerogear.android.Config;
+import org.jboss.aerogear.android.core.Config;
 
 /**
  * 
  * @param <CONFIGURATION> The concrete implementation of the CryptoConfiguration
  */
-public abstract class CryptoConfiguration<CONFIGURATION extends CryptoConfiguration<CONFIGURATION>> implements Config<CONFIGURATION> {
+public abstract class AbstractEncryptionConfiguration<CONFIGURATION extends AbstractEncryptionConfiguration<CONFIGURATION>> implements Config<CONFIGURATION> {
 
     private String name;
     private Context context;

@@ -14,12 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.security;
+package org.jboss.aerogear.android.security.keystore;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import org.jboss.aerogear.AeroGearCrypto;
+import org.jboss.aerogear.android.security.AbstractEncryptionService;
 import org.jboss.aerogear.android.security.EncryptionService;
+import org.jboss.aerogear.android.security.util.KeyStoreUtils;
 import org.jboss.aerogear.crypto.CryptoBox;
 import org.jboss.aerogear.crypto.RandomUtils;
 import org.jboss.aerogear.crypto.encoders.Encoder;
@@ -35,21 +37,21 @@ import java.security.spec.InvalidKeySpecException;
  * 
  * If a keystore does not exist, one will be created and saved on the device.
  */
-public class PasswordEncryptionServices extends AbstractEncryptionService implements EncryptionService {
+public class KeyStoreBasedEncryptionEncryptionServices extends AbstractEncryptionService implements EncryptionService {
 
-    private static final String TAG = PasswordEncryptionServices.class.getSimpleName();
+    private static final String TAG = KeyStoreBasedEncryptionEncryptionServices.class.getSimpleName();
     private static final String APPLICATION_SALT_KEY = "applicationSALT";
 
     private final Context appContext;
     private final CryptoBox crypto;
 
-    public PasswordEncryptionServices(PasswordProtectedKeyStoreCryptoConfiguration config) {
+    public KeyStoreBasedEncryptionEncryptionServices(KeyStoreBasedEncryptionConfiguration config) {
         super(config.getContext());
         this.appContext = config.getContext();
         this.crypto = getCrypto(appContext, config);
     }
 
-    private CryptoBox getCrypto(Context appContext, PasswordProtectedKeyStoreCryptoConfiguration config) {
+    private CryptoBox getCrypto(Context appContext, KeyStoreBasedEncryptionConfiguration config) {
         validate(config);
 
         String keyAlias = config.getAlias();
@@ -59,29 +61,29 @@ public class PasswordEncryptionServices extends AbstractEncryptionService implem
 
         char[] password = derive(config.getPassword()).toCharArray();
 
-        KeyStoreServices keyStoreServices = new KeyStoreServices(appContext, password);
-        byte[] keyEntry = keyStoreServices.getEntry(keyAlias);
+        KeyStoreUtils keyStoreUtils = new KeyStoreUtils(appContext, password);
+        byte[] keyEntry = keyStoreUtils.getEntry(keyAlias);
         if (keyEntry != null) {
             return new CryptoBox(keyEntry);
         } else {
-            return new CryptoBox(createKey(keyStoreServices, keyAlias));
+            return new CryptoBox(createKey(keyStoreUtils, keyAlias));
         }
 
     }
 
-    private byte[] createKey(KeyStoreServices keyStoreServices, String keyAlias) {
+    private byte[] createKey(KeyStoreUtils keyStoreUtils, String keyAlias) {
         KeyPair pair = new KeyPair();
 
         CryptoBox cryptoBox = new CryptoBox();
         byte[] sharedSecret = cryptoBox.generateSecret(pair.getPrivateKey(), pair.getPublicKey());
 
-        keyStoreServices.addEntry(keyAlias, sharedSecret);
-        keyStoreServices.save();
+        keyStoreUtils.addEntry(keyAlias, sharedSecret);
+        keyStoreUtils.save();
 
         return sharedSecret;
     }
 
-    private void validate(PasswordProtectedKeyStoreCryptoConfiguration config) {
+    private void validate(KeyStoreBasedEncryptionConfiguration config) {
 
         if (config.getAlias() == null) {
             throw new IllegalArgumentException("The alias must not be null");

@@ -21,11 +21,11 @@ public interface OnEncryptionServiceCreatedListener {
     /**
      * 
      * A method called when {@link EncryptionService}s are created. Typically this will
-     * be done from {@link CryptoConfiguration#asService()   }
+     * be done from {@link AbstractEncryptionConfiguration#asService()   }
      * 
      * @param configuration the configuration of the new Service
      * @param service the new EncryptionService
      */
-    abstract void onEncryptionServiceCreated(CryptoConfiguration<?> configuration, EncryptionService service);
+    abstract void onEncryptionServiceCreated(AbstractEncryptionConfiguration<?> configuration, EncryptionService service);
 
 }

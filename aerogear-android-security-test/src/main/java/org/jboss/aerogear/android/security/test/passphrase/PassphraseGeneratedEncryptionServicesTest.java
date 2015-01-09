@@ -14,29 +14,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.security;
+package org.jboss.aerogear.android.security.test.passphrase;
+
+import org.jboss.aerogear.android.security.passphrase.PassphraseGeneratedEncryptionConfiguration;
+import org.jboss.aerogear.android.security.passphrase.PassphraseGeneratedEncryptionServices;
+import org.jboss.aerogear.android.security.test.MainActivity;
+import org.jboss.aerogear.android.security.test.util.PatchedActivityInstrumentationTestCase;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
-import static junit.framework.Assert.assertTrue;
-import org.jboss.aerogear.android.security.test.MainActivity;
-import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
 
-public class PhassphraseKeyServicesTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
+public class PassphraseGeneratedEncryptionServicesTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
 
     private static byte[] SALT = new SecureRandom().generateSeed(1024);
 
-    public PhassphraseKeyServicesTest() {
+    public PassphraseGeneratedEncryptionServicesTest() {
         super(MainActivity.class);
     }
 
     public void testPassphraseKeyServicesEncrypt() {
-        PassphraseCryptoConfiguration config = new PassphraseCryptoConfiguration();
+        PassphraseGeneratedEncryptionConfiguration config = new PassphraseGeneratedEncryptionConfiguration();
         config.setPassphrase("testPhrase");
         config.setSalt(SALT);
         config.setContext(getActivity());
 
-        PassphraseEncryptionServices service = new PassphraseEncryptionServices(config);
+        PassphraseGeneratedEncryptionServices service = new PassphraseGeneratedEncryptionServices(config);
         String message = "This is a test message";
 
         byte[] encrypted = service.encrypt(message.getBytes());

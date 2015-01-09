@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.security;
+package org.jboss.aerogear.android.security.test.util;
 
-import org.jboss.aerogear.android.ConfigurationProvider;
-import org.jboss.aerogear.android.impl.security.PassphraseCryptoConfiguration;
+import android.app.Activity;
+import android.os.Bundle;
 
-public class PassphraseConfigurationProvider implements ConfigurationProvider<PassphraseCryptoConfiguration> {
+public class StubActivity extends Activity {
 
     @Override
-    public PassphraseCryptoConfiguration newConfiguration() {
-        return new PassphraseCryptoConfiguration();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
 }

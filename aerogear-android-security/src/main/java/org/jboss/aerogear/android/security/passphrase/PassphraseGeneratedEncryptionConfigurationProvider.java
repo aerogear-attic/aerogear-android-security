@@ -14,16 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.util;
+package org.jboss.aerogear.android.security.passphrase;
 
-import android.app.Activity;
-import android.os.Bundle;
+import org.jboss.aerogear.android.core.ConfigurationProvider;
 
-public class StubActivity extends Activity {
+public class PassphraseGeneratedEncryptionConfigurationProvider implements ConfigurationProvider<PassphraseGeneratedEncryptionConfiguration> {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public PassphraseGeneratedEncryptionConfiguration newConfiguration() {
+        return new PassphraseGeneratedEncryptionConfiguration();
     }
 
 }

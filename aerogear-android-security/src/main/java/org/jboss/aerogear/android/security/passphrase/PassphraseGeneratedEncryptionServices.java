@@ -14,10 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.security;
+package org.jboss.aerogear.android.security.passphrase;
 
 import android.util.Log;
 import org.jboss.aerogear.AeroGearCrypto;
+import org.jboss.aerogear.android.security.AbstractEncryptionService;
 import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.crypto.CryptoBox;
 import org.jboss.aerogear.crypto.keys.PrivateKey;
@@ -28,18 +29,18 @@ import java.security.spec.InvalidKeySpecException;
 /**
  * This class generates a CryptoBox from a PassPhrase
  */
-public class PassphraseEncryptionServices extends AbstractEncryptionService implements EncryptionService {
+public class PassphraseGeneratedEncryptionServices extends AbstractEncryptionService implements EncryptionService {
 
-    private static final String TAG = PassphraseEncryptionServices.class.getSimpleName();
+    private static final String TAG = PassphraseGeneratedEncryptionServices.class.getSimpleName();
 
     private final CryptoBox crypto;
 
-    public PassphraseEncryptionServices(PassphraseCryptoConfiguration config) {
+    public PassphraseGeneratedEncryptionServices(PassphraseGeneratedEncryptionConfiguration config) {
         super(config.getContext());
         this.crypto = getCrypto(config);
     }
 
-    private CryptoBox getCrypto(PassphraseCryptoConfiguration config) {
+    private CryptoBox getCrypto(PassphraseGeneratedEncryptionConfiguration config) {
         Pbkdf2 pbkdf2 = AeroGearCrypto.pbkdf2();
         byte[] rawPassword;
 
@@ -55,7 +56,7 @@ public class PassphraseEncryptionServices extends AbstractEncryptionService impl
 
     }
 
-    private void validate(PassphraseCryptoConfiguration config) {
+    private void validate(PassphraseGeneratedEncryptionConfiguration config) {
 
         if (config.getSalt() == null) {
             throw new IllegalArgumentException("The salt must not be null");

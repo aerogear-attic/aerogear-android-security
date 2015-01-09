@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.security;
+package org.jboss.aerogear.android.security.passphrase;
 
-import org.jboss.aerogear.android.Config;
-import org.jboss.aerogear.android.security.CryptoConfiguration;
+import org.jboss.aerogear.android.core.Config;
+import org.jboss.aerogear.android.security.AbstractEncryptionConfiguration;
 import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.crypto.RandomUtils;
 
 /**
- * Configures an instance of {@link PassphraseEncryptionServices}.
+ * Configures an instance of {@link PassphraseGeneratedEncryptionServices}.
  */
-public final class PassphraseCryptoConfiguration extends CryptoConfiguration<PassphraseCryptoConfiguration> implements Config<PassphraseCryptoConfiguration> {
+public final class PassphraseGeneratedEncryptionConfiguration extends AbstractEncryptionConfiguration<PassphraseGeneratedEncryptionConfiguration> implements Config<PassphraseGeneratedEncryptionConfiguration> {
 
     private byte[] salt = RandomUtils.randomBytes();
     private String passphrase;
@@ -46,7 +46,7 @@ public final class PassphraseCryptoConfiguration extends CryptoConfiguration<Pas
      * @param salt a new salt
      * @return the current configuration
      */
-    public PassphraseCryptoConfiguration setSalt(byte[] salt) {
+    public PassphraseGeneratedEncryptionConfiguration setSalt(byte[] salt) {
         this.salt = salt;
         return this;
     }
@@ -66,14 +66,14 @@ public final class PassphraseCryptoConfiguration extends CryptoConfiguration<Pas
      * @param passphrase a new passphrase
      * @return the current configuration
      */
-    public PassphraseCryptoConfiguration setPassphrase(String passphrase) {
+    public PassphraseGeneratedEncryptionConfiguration setPassphrase(String passphrase) {
         this.passphrase = passphrase;
         return this;
     }
 
     @Override
     protected EncryptionService buildService() {
-        return new PassphraseEncryptionServices(this);
+        return new PassphraseGeneratedEncryptionServices(this);
     }
 
 }

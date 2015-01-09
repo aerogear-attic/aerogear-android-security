@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.security;
+package org.jboss.aerogear.android.security.keystore;
 
-import org.jboss.aerogear.android.Config;
-import org.jboss.aerogear.android.security.CryptoConfiguration;
+import org.jboss.aerogear.android.core.Config;
+import org.jboss.aerogear.android.security.AbstractEncryptionConfiguration;
 import org.jboss.aerogear.android.security.EncryptionService;
 
 /**
- * Configures an instance of {@link PasswordEncryptionServices}.
+ * Configures an instance of {@link KeyStoreBasedEncryptionEncryptionServices}.
  */
-public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoConfiguration<PasswordProtectedKeyStoreCryptoConfiguration> implements
-        Config<PasswordProtectedKeyStoreCryptoConfiguration> {
+public final class KeyStoreBasedEncryptionConfiguration extends AbstractEncryptionConfiguration<KeyStoreBasedEncryptionConfiguration> implements
+        Config<KeyStoreBasedEncryptionConfiguration> {
 
     private String alias;
     private String password;
@@ -45,7 +45,7 @@ public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoCo
      * @param alias a new alias
      * @return the current configuration
      */
-    public PasswordProtectedKeyStoreCryptoConfiguration setAlias(String alias) {
+    public KeyStoreBasedEncryptionConfiguration setAlias(String alias) {
         this.alias = alias;
         return this;
     }
@@ -65,7 +65,7 @@ public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoCo
      * @param password a new password
      * @return the current configuration.
      */
-    public PasswordProtectedKeyStoreCryptoConfiguration setPassword(String password) {
+    public KeyStoreBasedEncryptionConfiguration setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -85,14 +85,14 @@ public final class PasswordProtectedKeyStoreCryptoConfiguration extends CryptoCo
      * @param keyStoreFile a new keystoreFile
      * @return the current configuration
      */
-    public PasswordProtectedKeyStoreCryptoConfiguration setKeyStoreFile(String keyStoreFile) {
+    public KeyStoreBasedEncryptionConfiguration setKeyStoreFile(String keyStoreFile) {
         this.keyStoreFile = keyStoreFile;
         return this;
     }
 
     @Override
     protected EncryptionService buildService() {
-        return new PasswordEncryptionServices(this);
+        return new KeyStoreBasedEncryptionEncryptionServices(this);
     }
 
 }

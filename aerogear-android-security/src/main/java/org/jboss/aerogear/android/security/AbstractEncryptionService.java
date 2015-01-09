@@ -14,11 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.security;
+package org.jboss.aerogear.android.security;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.crypto.CryptoBox;
 import org.jboss.aerogear.crypto.RandomUtils;
 import org.jboss.aerogear.crypto.encoders.Hex;

@@ -14,22 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package org.jboss.aerogear.android.impl.security;
+package org.jboss.aerogear.android.security.test.keystore;
 
 import java.util.Arrays;
+
+import org.jboss.aerogear.android.security.keystore.KeyStoreBasedEncryptionEncryptionServices;
+import org.jboss.aerogear.android.security.keystore.KeyStoreBasedEncryptionConfiguration;
 import org.jboss.aerogear.android.security.test.MainActivity;
-import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
-import org.jboss.aerogear.fixture.TestVectors;
+import org.jboss.aerogear.android.security.test.util.PatchedActivityInstrumentationTestCase;
+import org.jboss.aerogear.android.security.test.fixture.TestVectors;
 
-public class PasswordKeyServicesTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
+public class KeyStoreBasedEncryptionEncryptionServicesTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
 
-    public PasswordKeyServicesTest() {
+    public KeyStoreBasedEncryptionEncryptionServicesTest() {
         super(MainActivity.class);
     }
 
@@ -38,23 +35,23 @@ public class PasswordKeyServicesTest extends PatchedActivityInstrumentationTestC
         super.setUp();
 
         // Generate the keyStore with the correct password.
-        PasswordProtectedKeyStoreCryptoConfiguration config = new PasswordProtectedKeyStoreCryptoConfiguration();
+        KeyStoreBasedEncryptionConfiguration config = new KeyStoreBasedEncryptionConfiguration();
         config.setAlias("TestAlias");
         config.setPassword("testPhrase");
         config.setContext(getActivity());
 
-        PasswordEncryptionServices service = new PasswordEncryptionServices(config);
+        KeyStoreBasedEncryptionEncryptionServices service = new KeyStoreBasedEncryptionEncryptionServices(config);
 
     }
 
     public void testPasswordKeyServicesEncrypt() {
         String message = "This is a test message";
-        PasswordProtectedKeyStoreCryptoConfiguration config = new PasswordProtectedKeyStoreCryptoConfiguration();
+        KeyStoreBasedEncryptionConfiguration config = new KeyStoreBasedEncryptionConfiguration();
         config.setAlias("TestAlias");
         config.setPassword("testPhrase");
         config.setContext(getActivity());
 
-        PasswordEncryptionServices service = new PasswordEncryptionServices(config);
+        KeyStoreBasedEncryptionEncryptionServices service = new KeyStoreBasedEncryptionEncryptionServices(config);
         byte[] encrypted = service.encrypt(TestVectors.CRYPTOBOX_IV.getBytes(), message.getBytes());
 
         assertFalse(Arrays.equals(encrypted, message.getBytes()));
@@ -64,13 +61,13 @@ public class PasswordKeyServicesTest extends PatchedActivityInstrumentationTestC
     }
 
     public void testPasswordKeyServicesEncryptShareKey() {
-        PasswordProtectedKeyStoreCryptoConfiguration config = new PasswordProtectedKeyStoreCryptoConfiguration();
+        KeyStoreBasedEncryptionConfiguration config = new KeyStoreBasedEncryptionConfiguration();
         config.setAlias("TestAlias");
         config.setPassword("testPhrase");
         config.setContext(getActivity());
 
-        PasswordEncryptionServices service = new PasswordEncryptionServices(config);
-        PasswordEncryptionServices service2 = new PasswordEncryptionServices(config);
+        KeyStoreBasedEncryptionEncryptionServices service = new KeyStoreBasedEncryptionEncryptionServices(config);
+        KeyStoreBasedEncryptionEncryptionServices service2 = new KeyStoreBasedEncryptionEncryptionServices(config);
         String message = "This is a test message";
 
         byte[] encrypted = service.encrypt(TestVectors.CRYPTOBOX_IV.getBytes(), message.getBytes());

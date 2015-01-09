@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.util;
+package org.jboss.aerogear.android.security.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.jboss.aerogear.android.impl.crypto.InvalidKeyException;
+import org.jboss.aerogear.android.security.InvalidKeyException;
 import org.jboss.aerogear.crypto.CryptoBox;
 import org.jboss.aerogear.crypto.keys.PrivateKey;
 

@@ -14,45 +14,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.security;
+package org.jboss.aerogear.android.security.test;
 
-import org.jboss.aerogear.android.security.test.MainActivity;
-import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
 import org.jboss.aerogear.android.security.EncryptionService;
-import org.jboss.aerogear.android.security.CryptoManager;
+import org.jboss.aerogear.android.security.SecurityManager;
+import org.jboss.aerogear.android.security.keystore.KeyStoreBasedEncryptionConfiguration;
+import org.jboss.aerogear.android.security.keystore.KeyStoreBasedEncryptionEncryptionServices;
+import org.jboss.aerogear.android.security.passphrase.PassphraseGeneratedEncryptionConfiguration;
+import org.jboss.aerogear.android.security.passphrase.PassphraseGeneratedEncryptionServices;
+import org.jboss.aerogear.android.security.test.util.PatchedActivityInstrumentationTestCase;
 import org.jboss.aerogear.crypto.RandomUtils;
 
 
-public class CryptoManagerTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
+public class SecurityManagerTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
 
-    public CryptoManagerTest() {
+    public SecurityManagerTest() {
         super(MainActivity.class);
     }
 
     public void testPassPhraseKeyManager() {
-        PassphraseCryptoConfiguration config = CryptoManager.config("testService", PassphraseCryptoConfiguration.class);
+        PassphraseGeneratedEncryptionConfiguration config = SecurityManager
+                .config("testService", PassphraseGeneratedEncryptionConfiguration.class);
         config.setPassphrase("testPhrase");
         config.setSalt(RandomUtils.randomBytes(1024));
         config.setContext(getActivity());
 
         EncryptionService service1 = config.asService();
-        EncryptionService service2 = CryptoManager.get("testService");
-        assertTrue(service1 instanceof PassphraseEncryptionServices);
+        EncryptionService service2 = SecurityManager.get("testService");
+        assertTrue(service1 instanceof PassphraseGeneratedEncryptionServices);
         assertSame(service1, service2);
 
     }
 
     public void testPasswordKeyManager() {
-        PasswordProtectedKeyStoreCryptoConfiguration config = CryptoManager.config("testService", PasswordProtectedKeyStoreCryptoConfiguration.class);
+        KeyStoreBasedEncryptionConfiguration config = SecurityManager
+                .config("testService", KeyStoreBasedEncryptionConfiguration.class);
         config.setAlias("TestAlias");
         config.setPassword("testPhrase");
         config.setContext(getActivity());
 
         EncryptionService service1 = config.asService();
-        EncryptionService service2 = CryptoManager.get("testService");
+        EncryptionService service2 = SecurityManager.get("testService");
 
         assertSame(service1, service2);
-        assertTrue(service1 instanceof PasswordEncryptionServices);
+        assertTrue(service1 instanceof KeyStoreBasedEncryptionEncryptionServices);
 
     }
 

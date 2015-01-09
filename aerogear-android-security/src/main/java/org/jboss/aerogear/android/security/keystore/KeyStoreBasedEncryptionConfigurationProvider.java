@@ -14,10 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.impl.crypto;
+package org.jboss.aerogear.android.security.keystore;
 
-public class InvalidKeyException extends RuntimeException {
-    public InvalidKeyException(RuntimeException e) {
-        super(e);
+import org.jboss.aerogear.android.core.ConfigurationProvider;
+
+public class KeyStoreBasedEncryptionConfigurationProvider implements ConfigurationProvider<KeyStoreBasedEncryptionConfiguration> {
+
+    @Override
+    public KeyStoreBasedEncryptionConfiguration newConfiguration() {
+        return new KeyStoreBasedEncryptionConfiguration();
     }
+
 }
