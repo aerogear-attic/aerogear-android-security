@@ -24,7 +24,7 @@ Add to your application's `build.gradle` file
 
 ```
 dependencies {
-  compile 'org.jboss.aerogear:aerogear-android-security:2.0.0-SNAPSHOT@aar'
+  compile 'org.jboss.aerogear:aerogear-android-security:2.0.0@aar'
 }
 ```
 
@@ -48,7 +48,7 @@ Include the following dependencies in your project's `pom.xml`
 <dependency>
   <groupId>org.jboss.aerogear</groupId>
   <artifactId>aerogear-android-security</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+  <version>2.0.0</version>
   <scope>provided</scope>
   <type>jar</type>
 </dependency>
@@ -56,7 +56,7 @@ Include the following dependencies in your project's `pom.xml`
 <dependency>
   <groupId>org.jboss.aerogear</groupId>
   <artifactId>aerogear-android-security</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+  <version>2.0.0</version>
   <type>apklib</type>
 </dependency>
 ```
