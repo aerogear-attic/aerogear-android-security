@@ -24,7 +24,7 @@ Add to your application's `build.gradle` file
 
 ```
 dependencies {
-  compile 'org.jboss.aerogear:aerogear-android-security:2.0.0@aar'
+  compile 'org.jboss.aerogear:aerogear-android-security:2.0.0'
 }
 ```
 
