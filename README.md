@@ -1,6 +1,6 @@
 # AeroGear Android Security [![Build Status](https://travis-ci.org/aerogear/aerogear-android-security.png)](https://travis-ci.org/aerogear/aerogear-android-security)
 
-AeroGear's Android libraries were built as jar and aar packages using [Maven](http://maven.apache.org/) and the [android-maven-plugin](https://github.com/jayway/maven-android-plugin). The project follows the standard Maven layout so can be imported directly into most IDEs as a Maven project.
+AeroGear's Android libraries were built as jar and aar packages using [Maven](http://maven.apache.org/) and the [android-maven-plugin](https://github.com/jayway/maven-android-plugin). The project follows the standard Maven layout so it can be imported directly into most IDEs as a Maven project.
 
 ## Security
 
@@ -8,7 +8,7 @@ AeroGear Android Security is an Android API under [AeroGear Crypto Java](https:/
 
 ## Building
 
-Please take a look of the [step by step guide](http://aerogear.org/docs/guides/aerogear-android/how-to-build-aerogear-android/) on our website.
+Please take a look at the [step by step guide](http://aerogear.org/docs/guides/aerogear-android/how-to-build-aerogear-android/) on our website.
 
 *The following dependencies are required to build this project:*
 
