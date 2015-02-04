@@ -6,6 +6,15 @@ AeroGear's Android libraries were built as jar and aar packages using [Maven](ht
 
 AeroGear Android Security is an Android API under [AeroGear Crypto Java](https://github.com/aerogear/aerogear-crypto-java) to provide easy way to use cryptography.
 
+|                 | Project Info  |
+| --------------- | ------------- |
+| License:        | Apache License, Version 2.0  |
+| Build:          | Maven  |
+| Documentation:  | http://aerogear.org/docs/guides/aerogear-android/  |
+| Issue tracker:  | https://issues.jboss.org/browse/AGDROID  |
+| Mailing lists:  | [aerogear-users](http://aerogear-users.1116366.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-users))  |
+|                 | [aerogear-dev](http://aerogear-dev.1069024.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-dev))  |
+
 ## Building
 
 Please take a look at the [step by step guide](http://aerogear.org/docs/guides/aerogear-android/how-to-build-aerogear-android/) on our website.
