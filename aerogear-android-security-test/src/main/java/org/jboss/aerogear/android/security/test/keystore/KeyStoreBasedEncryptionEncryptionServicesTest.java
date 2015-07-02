@@ -16,6 +16,7 @@
  */
 package org.jboss.aerogear.android.security.test.keystore;
 
+import android.support.test.runner.AndroidJUnit4;
 import java.util.Arrays;
 
 import org.jboss.aerogear.android.security.keystore.KeyStoreBasedEncryptionEncryptionServices;
@@ -23,17 +24,20 @@ import org.jboss.aerogear.android.security.keystore.KeyStoreBasedEncryptionConfi
 import org.jboss.aerogear.android.security.test.MainActivity;
 import org.jboss.aerogear.android.security.test.util.PatchedActivityInstrumentationTestCase;
 import org.jboss.aerogear.android.security.test.fixture.TestVectors;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class KeyStoreBasedEncryptionEncryptionServicesTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
+@RunWith(AndroidJUnit4.class)
+public class KeyStoreBasedEncryptionEncryptionServicesTest extends PatchedActivityInstrumentationTestCase {
 
     public KeyStoreBasedEncryptionEncryptionServicesTest() {
         super(MainActivity.class);
     }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-
+    @Before
+    public void setUp() throws Exception {
         // Generate the keyStore with the correct password.
         KeyStoreBasedEncryptionConfiguration config = new KeyStoreBasedEncryptionConfiguration();
         config.setAlias("TestAlias");
@@ -44,6 +48,7 @@ public class KeyStoreBasedEncryptionEncryptionServicesTest extends PatchedActivi
 
     }
 
+    @Test
     public void testPasswordKeyServicesEncrypt() {
         String message = "This is a test message";
         KeyStoreBasedEncryptionConfiguration config = new KeyStoreBasedEncryptionConfiguration();
@@ -54,12 +59,13 @@ public class KeyStoreBasedEncryptionEncryptionServicesTest extends PatchedActivi
         KeyStoreBasedEncryptionEncryptionServices service = new KeyStoreBasedEncryptionEncryptionServices(config);
         byte[] encrypted = service.encrypt(TestVectors.CRYPTOBOX_IV.getBytes(), message.getBytes());
 
-        assertFalse(Arrays.equals(encrypted, message.getBytes()));
+        Assert.assertFalse(Arrays.equals(encrypted, message.getBytes()));
         byte[] decrypted = service.decrypt(TestVectors.CRYPTOBOX_IV.getBytes(), encrypted);
-        assertTrue(Arrays.equals(decrypted, message.getBytes()));
+        Assert.assertTrue(Arrays.equals(decrypted, message.getBytes()));
 
     }
 
+    @Test
     public void testPasswordKeyServicesEncryptShareKey() {
         KeyStoreBasedEncryptionConfiguration config = new KeyStoreBasedEncryptionConfiguration();
         config.setAlias("TestAlias");
@@ -72,9 +78,9 @@ public class KeyStoreBasedEncryptionEncryptionServicesTest extends PatchedActivi
 
         byte[] encrypted = service.encrypt(TestVectors.CRYPTOBOX_IV.getBytes(), message.getBytes());
 
-        assertFalse(Arrays.equals(encrypted, message.getBytes()));
+        Assert.assertFalse(Arrays.equals(encrypted, message.getBytes()));
         byte[] decrypted = service2.decrypt(TestVectors.CRYPTOBOX_IV.getBytes(), encrypted);
-        assertTrue(Arrays.equals(decrypted, message.getBytes()));
+        Assert.assertTrue(Arrays.equals(decrypted, message.getBytes()));
     }
 
 }

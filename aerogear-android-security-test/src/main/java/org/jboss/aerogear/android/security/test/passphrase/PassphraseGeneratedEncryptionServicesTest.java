@@ -16,6 +16,7 @@
  */
 package org.jboss.aerogear.android.security.test.passphrase;
 
+import android.support.test.runner.AndroidJUnit4;
 import org.jboss.aerogear.android.security.passphrase.PassphraseGeneratedEncryptionConfiguration;
 import org.jboss.aerogear.android.security.passphrase.PassphraseGeneratedEncryptionServices;
 import org.jboss.aerogear.android.security.test.MainActivity;
@@ -23,8 +24,12 @@ import org.jboss.aerogear.android.security.test.util.PatchedActivityInstrumentat
 
 import java.security.SecureRandom;
 import java.util.Arrays;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class PassphraseGeneratedEncryptionServicesTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
+@RunWith(AndroidJUnit4.class)
+public class PassphraseGeneratedEncryptionServicesTest extends PatchedActivityInstrumentationTestCase {
 
     private static byte[] SALT = new SecureRandom().generateSeed(1024);
 
@@ -32,6 +37,7 @@ public class PassphraseGeneratedEncryptionServicesTest extends PatchedActivityIn
         super(MainActivity.class);
     }
 
+    @Test
     public void testPassphraseKeyServicesEncrypt() {
         PassphraseGeneratedEncryptionConfiguration config = new PassphraseGeneratedEncryptionConfiguration();
         config.setPassphrase("testPhrase");
@@ -44,7 +50,7 @@ public class PassphraseGeneratedEncryptionServicesTest extends PatchedActivityIn
         byte[] encrypted = service.encrypt(message.getBytes());
 
         byte[] decrypted = service.decrypt(encrypted);
-        assertTrue(Arrays.equals(decrypted, message.getBytes()));
+        Assert.assertTrue(Arrays.equals(decrypted, message.getBytes()));
 
     }
 
