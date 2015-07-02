@@ -18,14 +18,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.jboss.aerogear.android.security.test">
 
-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="21" />
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     
     <instrumentation
-        android:name="android.test.InstrumentationTestRunner"
+        android:name="android.support.test.runner.AndroidJUnitRunner"
         android:targetPackage="org.jboss.aerogear.android.security.test" />
 
     <application

@@ -16,6 +16,7 @@
  */
 package org.jboss.aerogear.android.security.test;
 
+import android.support.test.runner.AndroidJUnit4;
 import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.android.security.SecurityManager;
 import org.jboss.aerogear.android.security.keystore.KeyStoreBasedEncryptionConfiguration;
@@ -24,14 +25,19 @@ import org.jboss.aerogear.android.security.passphrase.PassphraseGeneratedEncrypt
 import org.jboss.aerogear.android.security.passphrase.PassphraseGeneratedEncryptionServices;
 import org.jboss.aerogear.android.security.test.util.PatchedActivityInstrumentationTestCase;
 import org.jboss.aerogear.crypto.RandomUtils;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 
-public class SecurityManagerTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
+@RunWith(AndroidJUnit4.class)
+public class SecurityManagerTest extends PatchedActivityInstrumentationTestCase {
 
     public SecurityManagerTest() {
         super(MainActivity.class);
     }
 
+    @Test
     public void testPassPhraseKeyManager() {
         PassphraseGeneratedEncryptionConfiguration config = SecurityManager
                 .config("testService", PassphraseGeneratedEncryptionConfiguration.class);
@@ -41,11 +47,12 @@ public class SecurityManagerTest extends PatchedActivityInstrumentationTestCase<
 
         EncryptionService service1 = config.asService();
         EncryptionService service2 = SecurityManager.get("testService");
-        assertTrue(service1 instanceof PassphraseGeneratedEncryptionServices);
-        assertSame(service1, service2);
+        Assert.assertTrue(service1 instanceof PassphraseGeneratedEncryptionServices);
+        Assert.assertSame(service1, service2);
 
     }
 
+    @Test
     public void testPasswordKeyManager() {
         KeyStoreBasedEncryptionConfiguration config = SecurityManager
                 .config("testService", KeyStoreBasedEncryptionConfiguration.class);
@@ -56,8 +63,8 @@ public class SecurityManagerTest extends PatchedActivityInstrumentationTestCase<
         EncryptionService service1 = config.asService();
         EncryptionService service2 = SecurityManager.get("testService");
 
-        assertSame(service1, service2);
-        assertTrue(service1 instanceof KeyStoreBasedEncryptionEncryptionServices);
+        Assert.assertSame(service1, service2);
+        Assert.assertTrue(service1 instanceof KeyStoreBasedEncryptionEncryptionServices);
 
     }
 
