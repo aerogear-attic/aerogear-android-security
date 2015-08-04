@@ -21,10 +21,6 @@ import com.google.gson.GsonBuilder;
 import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.android.security.InvalidKeyException;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 public class CryptoEntityUtil<T> {
 
     private final EncryptionService encryptionService;
@@ -47,14 +43,6 @@ public class CryptoEntityUtil<T> {
         String json = gson.toJson(item);
         byte[] message = json.getBytes();
         return encryptionService.encrypt(IV, message);
-    }
-
-    public Collection<T> decrypt(Collection<byte[]> encryptedCollection) {
-        List<T> decryptedList = new ArrayList<T>();
-        for (byte[] encryptedItem : encryptedCollection) {
-            decryptedList.add(decrypt(encryptedItem));
-        }
-        return decryptedList;
     }
 
     public T decrypt(byte[] data) {
