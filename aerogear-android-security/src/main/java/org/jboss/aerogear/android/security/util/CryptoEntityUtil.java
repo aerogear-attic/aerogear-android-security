@@ -18,30 +18,35 @@ package org.jboss.aerogear.android.security.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.jboss.aerogear.android.security.EncryptionService;
 import org.jboss.aerogear.android.security.InvalidKeyException;
-import org.jboss.aerogear.crypto.CryptoBox;
-import org.jboss.aerogear.crypto.keys.PrivateKey;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class CryptoUtils<T> {
+public class CryptoEntityUtil<T> {
 
-    private final CryptoBox cryptoBox;
+    private final EncryptionService encryptionService;
     private final byte[] IV;
     private final Class<T> modelClass;
     private final Gson gson;
 
-    public CryptoUtils(PrivateKey privateKey, byte[] iv, Class<T> modelClass) {
-        this(privateKey, iv, modelClass, new GsonBuilder());
+    public CryptoEntityUtil(EncryptionService encryptionService, byte[] iv, Class<T> modelClass) {
+        this(encryptionService, iv, modelClass, new GsonBuilder());
     }
 
-    public CryptoUtils(PrivateKey privateKey, byte[] iv, Class<T> modelClass, GsonBuilder builder) {
-        this.modelClass = modelClass;
-        this.cryptoBox = new CryptoBox(privateKey);
+    public CryptoEntityUtil(EncryptionService encryptionService, byte[] iv, Class<T> modelClass, GsonBuilder builder) {
+        this.encryptionService = encryptionService;
         this.IV = iv;
+        this.modelClass = modelClass;
         this.gson = builder.create();
+    }
+
+    public byte[] encrypt(T item) {
+        String json = gson.toJson(item);
+        byte[] message = json.getBytes();
+        return encryptionService.encrypt(IV, message);
     }
 
     public Collection<T> decrypt(Collection<byte[]> encryptedCollection) {
@@ -52,15 +57,9 @@ public class CryptoUtils<T> {
         return decryptedList;
     }
 
-    public byte[] encrypt(T item) {
-        String json = gson.toJson(item);
-        byte[] message = json.getBytes();
-        return cryptoBox.encrypt(IV, message);
-    }
-
     public T decrypt(byte[] data) {
         try {
-            byte[] decryptedData = cryptoBox.decrypt(IV, data);
+            byte[] decryptedData = encryptionService.decrypt(IV, data);
             String json = new String(decryptedData);
             return gson.fromJson(json, modelClass);
         } catch (RuntimeException e) {
