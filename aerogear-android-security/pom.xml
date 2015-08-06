@@ -38,6 +38,18 @@
         <tag>HEAD</tag>
     </scm>
 
+    <properties>
+
+        <!-- Dependencies versions -->
+        <aerogear.android.core.version>3.0.0-SNAPSHOT</aerogear.android.core.version>
+        <aerogear.crypto.version>0.1.5</aerogear.crypto.version>
+
+        <!-- Plugins versions -->
+        <maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
+        <builder.helper.plugin.version>1.7</builder.helper.plugin.version>
+
+    </properties>
+
     <dependencies>
 
         <dependency>
@@ -72,17 +84,31 @@
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.simpligility.maven.plugins</groupId>
-                    <artifactId>android-maven-plugin</artifactId>
-                    <version>${maven.android.plugin.version}</version>
-                    <extensions>true</extensions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>com.simpligility.maven.plugins</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <configuration>
+                    <run>
+                        <debug>${android.debug}</debug>
+                    </run>
+                    <sdk>
+                        <platform>${android.platform}</platform>
+                    </sdk>
+                    <proguard>
+                        <skip>${proguard.skip}</skip>
+                    </proguard>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -108,30 +134,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.simpligility.maven.plugins</groupId>
-                <artifactId>android-maven-plugin</artifactId>
-                <configuration>
-                    <run>
-                        <debug>${android.debug}</debug>
-                    </run>
-                    <sdk>
-                        <platform>${android.platform}</platform>
-                    </sdk>
-                    <emulator>
-                        <avd>${android.platform}</avd>
-                    </emulator>
-                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
-                    <proguard>
-                        <skip>${proguard.skip}</skip>
-                    </proguard>
-                </configuration>
-            </plugin>
-
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>${builder.helper.plugin.version}</version>
@@ -152,7 +154,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 

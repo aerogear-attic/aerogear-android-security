@@ -43,22 +43,16 @@
     </scm>
 
     <properties>
-
-        <!-- Project depencies versions -->
+        <!-- Dependencies versions -->
         <aerogear.bom.version>0.2.10</aerogear.bom.version>
-        <aerogear.android.core.version>3.0.0-SNAPSHOT</aerogear.android.core.version>
-        <aerogear.crypto.version>0.1.5</aerogear.crypto.version>
 
         <!-- Plugins versions -->
-        <maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
         <maven.android.plugin.version>4.3.0</maven.android.plugin.version>
-        <builder.helper.plugin.version>1.7</builder.helper.plugin.version>
 
         <!-- Android configs -->
         <android.platform>22</android.platform>
         <android.debug>false</android.debug>
         <proguard.skip>true</proguard.skip>
-
     </properties>
 
     <dependencyManagement>
@@ -121,7 +115,6 @@
             </modules>
         </profile>
     </profiles>
-
 
 </project>
 
