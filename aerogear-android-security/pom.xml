@@ -41,7 +41,7 @@
     <properties>
 
         <!-- Dependencies versions -->
-        <aerogear.android.core.version>3.0.0-SNAPSHOT</aerogear.android.core.version>
+        <aerogear.android.core.version>3.0.0</aerogear.android.core.version>
         <aerogear.crypto.version>0.1.5</aerogear.crypto.version>
 
         <!-- Plugins versions -->
