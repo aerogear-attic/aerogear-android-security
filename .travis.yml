@@ -1,4 +1,7 @@
-sudo: false # See: docs.travis-ci.com/user/migrating-from-legacy
+# See: Travis Support did recomment moving Android builds to GCE.
+# Which is on 'precise' and has larger VMs: https://docs.travis-ci.com/user/ci-environment/#Virtualization-environments
+sudo: required
+dist: precise
 
 language: android
 
