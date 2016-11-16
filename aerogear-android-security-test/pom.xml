@@ -123,6 +123,7 @@
             <plugin>
                 <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
+                <version>${maven.android.plugin.version}</version>
                 <configuration>
                     <test>
                         <debug>${android.debug}</debug>
