@@ -45,8 +45,8 @@
         <aerogear.crypto.version>0.1.6</aerogear.crypto.version>
 
         <!-- Plugins versions -->
-        <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
-        <builder.helper.plugin.version>1.10</builder.helper.plugin.version>
+        <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
+        <builder.helper.plugin.version>1.12</builder.helper.plugin.version>
 
     </properties>
 
