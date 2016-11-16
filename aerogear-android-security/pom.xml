@@ -41,12 +41,11 @@
     <properties>
 
         <!-- Dependencies versions -->
-        <aerogear.android.core.version>3.0.0</aerogear.android.core.version>
+        <aerogear.android.core.version>3.1.0</aerogear.android.core.version>
         <aerogear.crypto.version>0.1.6</aerogear.crypto.version>
 
         <!-- Plugins versions -->
-        <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
-        <builder.helper.plugin.version>1.10</builder.helper.plugin.version>
+        <builder.helper.plugin.version>1.12</builder.helper.plugin.version>
 
     </properties>
 
@@ -88,6 +87,7 @@
             <plugin>
                 <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
+                <version>${maven.android.plugin.version}</version>
                 <configuration>
                     <run>
                         <debug>${android.debug}</debug>
@@ -113,7 +113,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven.javadoc.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
