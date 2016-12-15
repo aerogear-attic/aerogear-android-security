@@ -66,7 +66,7 @@ Include the following dependencies in your project's `pom.xml`
 
 ## Documentation
 
-For more details about the current release, please consult [our documentation](http://aerogear.org/docs/guides/aerogear-android/).
+For more details about the current release, please consult [our documentation](https://aerogear.org/android/).
 
 ## Development
 
