@@ -68,13 +68,6 @@ Include the following dependencies in your project's `pom.xml`
 
 For more details about the current release, please consult [our documentation](http://aerogear.org/docs/guides/aerogear-android/).
 
-## Demo apps
-
-Take a look in our demo apps
-
-* [OTP Demo](https://github.com/aerogear/aerogear-otp-android-demo)
-* [Crypto Demo](https://github.com/aerogear/aerogear-crypto-android-demo)
-
 ## Development
 
 If you would like to help develop AeroGear you can join our [developer's mailing list](https://lists.jboss.org/mailman/listinfo/aerogear-dev), join #aerogear on Freenode, or shout at us on Twitter @aerogears.
