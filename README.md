@@ -1,4 +1,10 @@
-# AeroGear Android Security [![Build Status](https://travis-ci.org/aerogear/aerogear-android-security.png)](https://travis-ci.org/aerogear/aerogear-android-security)
+# AeroGear Android Security
+
+[![Maintenance](https://img.shields.io/maintenance/yes/2016.svg)](http://github.com/aerogear/aerogear-android-security)
+[![Travis](https://img.shields.io/travis/aerogear/aerogear-android-security.svg)](http://travis-ci.org/aerogear/aerogear-android-security)
+[![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
+[![Maven Central](https://img.shields.io/maven-central/v/org.jboss.aerogear/aerogear-android-security.svg)](http://search.maven.org/#search%7Cga%7C1%7Caerogear-android-security)
+[![Javadocs](http://www.javadoc.io/badge/org.jboss.aerogear/aerogear-android-security.svg?color=blue)](http://www.javadoc.io/doc/org.jboss.aerogear/aerogear-android-security)
 
 AeroGear's Android libraries were built as jar and aar packages using [Maven](http://maven.apache.org/) and the [android-maven-plugin](https://github.com/jayway/maven-android-plugin). The project follows the standard Maven layout so it can be imported directly into most IDEs as a Maven project.
 
@@ -10,7 +16,7 @@ AeroGear Android Security is an Android API under [AeroGear Crypto Java](https:/
 | --------------- | ------------- |
 | License:        | Apache License, Version 2.0  |
 | Build:          | Maven  |
-| Documentation:  | http://aerogear.org/docs/guides/aerogear-android/  |
+| Documentation:  | https://aerogear.org/android/  |
 | Issue tracker:  | https://issues.jboss.org/browse/AGDROID  |
 | Mailing lists:  | [aerogear-users](http://aerogear-users.1116366.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-users))  |
 |                 | [aerogear-dev](http://aerogear-dev.1069024.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-dev))  |
@@ -31,9 +37,9 @@ There are two supported ways of developing apps using AeroGear for Android: Andr
 
 Add to your application's `build.gradle` file
 
-```
+```groovy
 dependencies {
-  compile 'org.jboss.aerogear:aerogear-android-security:2.1.0'
+  compile 'org.jboss.aerogear:aerogear-android-security:3.1.0'
 }
 ```
 
@@ -41,11 +47,11 @@ dependencies {
 
 Include the following dependencies in your project's `pom.xml`
 
-```
+```xml
 <dependency>
   <groupId>org.jboss.aerogear</groupId>
   <artifactId>aerogear-android-security</artifactId>
-  <version>2.1.0</version>
+  <version>3.1.0</version>
   <scope>provided</scope>
   <type>jar</type>
 </dependency>
@@ -53,21 +59,14 @@ Include the following dependencies in your project's `pom.xml`
 <dependency>
   <groupId>org.jboss.aerogear</groupId>
   <artifactId>aerogear-android-security</artifactId>
-  <version>2.1.0</version>
+  <version>3.1.0</version>
   <type>aar</type>
 </dependency>
 ```
 
 ## Documentation
 
-For more details about the current release, please consult [our documentation](http://aerogear.org/docs/guides/aerogear-android/).
-
-## Demo apps
-
-Take a look in our demo apps
-
-* [OTP Demo](https://github.com/aerogear/aerogear-otp-android-demo)
-* [Crypto Demo](https://github.com/aerogear/aerogear-crypto-android-demo)
+For more details about the current release, please consult [our documentation](https://aerogear.org/android/).
 
 ## Development
 
