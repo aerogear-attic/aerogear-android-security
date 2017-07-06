@@ -1,6 +1,5 @@
 # AeroGear Android Security
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2016.svg)](http://github.com/aerogear/aerogear-android-security)
 [![Travis](https://img.shields.io/travis/aerogear/aerogear-android-security.svg)](http://travis-ci.org/aerogear/aerogear-android-security)
 [![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
 [![Maven Central](https://img.shields.io/maven-central/v/org.jboss.aerogear/aerogear-android-security.svg)](http://search.maven.org/#search%7Cga%7C1%7Caerogear-android-security)
@@ -21,14 +20,6 @@ AeroGear Android Security is an Android API under [AeroGear Crypto Java](https:/
 | Mailing lists:  | [aerogear-users](http://aerogear-users.1116366.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-users))  |
 |                 | [aerogear-dev](http://aerogear-dev.1069024.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-dev))  |
 
-## Building
-
-Please take a look at the [step by step guide](http://aerogear.org/docs/guides/aerogear-android/how-to-build-aerogear-android/) on our website.
-
-*The following dependencies are required to build this project:*
-
-* [aerogear-android-core](http://github.com/aerogear/aerogear-android-core) 
-
 ## Usage
 
 There are two supported ways of developing apps using AeroGear for Android: Android Studio and Maven.
@@ -48,14 +39,6 @@ dependencies {
 Include the following dependencies in your project's `pom.xml`
 
 ```xml
-<dependency>
-  <groupId>org.jboss.aerogear</groupId>
-  <artifactId>aerogear-android-security</artifactId>
-  <version>3.1.0</version>
-  <scope>provided</scope>
-  <type>jar</type>
-</dependency>
-
 <dependency>
   <groupId>org.jboss.aerogear</groupId>
   <artifactId>aerogear-android-security</artifactId>
