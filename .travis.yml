@@ -7,37 +7,38 @@ notifications:
   irc: "irc.freenode.org#aerogear"
 
 language: android
+jdk: oraclejdk8
 
-jdk:
-  - oraclejdk8
+env:
+  global:
+    - BUILD_TOOLS: "25.0.3"
+    - ANDROID_TARGET=25
+    - ANDROID_EMULATOR=24
+    - ANDROID_ABI=armeabi-v7a
 
 android:
   components:
     - platform-tools
     - tools
-    - build-tools-25.0.3
-    - android-25
+    - build-tools-${BUILD_TOOLS}
+    - android-${ANDROID_TARGET}
+    - android-${ANDROID_EMULATOR}
+    - sys-img-armeabi-v7a-android-${ANDROID_EMULATOR}
 
-env:
-  matrix:
-    - ANDROID_SDK="android-25" ANDROID_EMULATOR="android-16" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-16"
-    - ANDROID_SDK="android-25" ANDROID_EMULATOR="android-17" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-17"
-    - ANDROID_SDK="android-25" ANDROID_EMULATOR="android-18" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-18"
-    - ANDROID_SDK="android-25" ANDROID_EMULATOR="android-19" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-19"
-    - ANDROID_SDK="android-25" ANDROID_EMULATOR="android-21" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-21"
-    - ANDROID_SDK="android-25" ANDROID_EMULATOR="android-22" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-22"
-    - ANDROID_SDK="android-25" ANDROID_EMULATOR="android-23" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-23"
-    - ANDROID_SDK="android-25" ANDROID_EMULATOR="android-24" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-24"
-    - ANDROID_SDK="android-25" ANDROID_EMULATOR="android-25" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-25"
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
-before_install:
-
-  # Install Android dependencies only on this Matrix
-  - echo y | android update sdk --no-ui --all --filter ${ANDROID_EMULATOR},${ANDROID_PKGS}
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
 
 before_script:
 
-  - echo no | android create avd --force -n test -t $ANDROID_EMULATOR --abi $ANDROID_ABI
+  # Create and run the emulator
+  - echo no | android create avd --force -n test -t android-${ANDROID_EMULATOR} --abi $ANDROID_ABI
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
