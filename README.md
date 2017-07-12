@@ -5,8 +5,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/org.jboss.aerogear/aerogear-android-security.svg)](http://search.maven.org/#search%7Cga%7C1%7Caerogear-android-security)
 [![Javadocs](http://www.javadoc.io/badge/org.jboss.aerogear/aerogear-android-security.svg?color=blue)](http://www.javadoc.io/doc/org.jboss.aerogear/aerogear-android-security)
 
-AeroGear's Android libraries were built as jar and aar packages using [Maven](http://maven.apache.org/) and the [android-maven-plugin](https://github.com/jayway/maven-android-plugin). The project follows the standard Maven layout so it can be imported directly into most IDEs as a Maven project.
-
 ## Security
 
 AeroGear Android Security is an Android API under [AeroGear Crypto Java](https://github.com/aerogear/aerogear-crypto-java) to provide easy way to use cryptography.
@@ -14,7 +12,7 @@ AeroGear Android Security is an Android API under [AeroGear Crypto Java](https:/
 |                 | Project Info  |
 | --------------- | ------------- |
 | License:        | Apache License, Version 2.0  |
-| Build:          | Maven  |
+| Build:          | Gradle  |
 | Documentation:  | https://aerogear.org/android/  |
 | Issue tracker:  | https://issues.jboss.org/browse/AGDROID  |
 | Mailing lists:  | [aerogear-users](http://aerogear-users.1116366.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-users))  |
