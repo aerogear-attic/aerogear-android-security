@@ -1,6 +1,6 @@
 # AeroGear Android Security
 
-[![circle-ci](https://img.shields.io/circleci/project/github/aerogear/aerogear-android-core/master.svg)](https://circleci.com/gh/aerogear/aerogear-android-core)
+[![circle-ci](https://img.shields.io/circleci/project/github/aerogear/aerogear-android-security/master.svg)](https://circleci.com/gh/aerogear/aerogear-android-security)
 [![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
 [![Maven Central](https://img.shields.io/maven-central/v/org.jboss.aerogear/aerogear-android-security.svg)](http://search.maven.org/#search%7Cga%7C1%7Caerogear-android-security)
 [![Javadocs](http://www.javadoc.io/badge/org.jboss.aerogear/aerogear-android-security.svg?color=blue)](http://www.javadoc.io/doc/org.jboss.aerogear/aerogear-android-security)
