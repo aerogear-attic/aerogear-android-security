@@ -26,7 +26,7 @@ android {
 }
 
 dependencies {
-    compile 'org.jboss.aerogear:aerogear-android-core:3.1.0'
+    compile 'org.jboss.aerogear:aerogear-android-core:4.0.0'
     compile 'org.jboss.aerogear:aerogear-crypto:0.1.6:android'
 
     testCompile 'junit:junit:4.12'
